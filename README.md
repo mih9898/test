@@ -1,3 +1,4 @@
-# Advanced Java - Fall 2020
-##Live Online Format
+# projects-startup
+
+This is the startup project for Advanced Java..
     
