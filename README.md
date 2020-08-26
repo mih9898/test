@@ -1,5 +1,5 @@
 # projects-startup
 
-This is the startup project for Advanced Java.
+Advanced Java - Fall 2020
 
     
