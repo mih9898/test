@@ -1,5 +1,3 @@
-# projects-startup
-Any changes?
-Advanced Java - Fall 2020
-
+# Advanced Java - Fall 2020
+##Live Online Format
     
