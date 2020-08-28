@@ -2,8 +2,8 @@ package java112.labs1;
 
 /**
  * 
- * The app provides tests
- * handling practice
+ * The app provides TDD
+ * practice
  * 
  * @author mturchanov
  * 
@@ -22,6 +22,7 @@ public class MysteryClassOne {
      * 
      * @param args
      */
-    public static void main(String[] args){}
+    public static void main(String[] args){
+        System.out.println("returned " + new MysteryClassOne().mysteryMethodOne());
+    }
 }
-    
