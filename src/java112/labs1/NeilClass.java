@@ -29,7 +29,7 @@ public class NeilClass
 
         try
         {
-            tValue = new Integer(tLinex).intValue();
+            tValue = Integer.parseInt(tLinex);
         }
         catch (NumberFormatException pNumberFormatException)
         {
@@ -50,7 +50,7 @@ public class NeilClass
 
         try
         {
-            tValue = new Double(tLinex).doubleValue();
+            tValue = Double.parseDouble(tLinex);
         }
         catch (NumberFormatException pNumberFormatException)
         {

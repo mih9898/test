@@ -45,7 +45,8 @@ public class LabSeven {
         String[] strArr = "“one”, “two”, “three”, “four”, “five”, “six”, “seven”, “eight”, “nine”, “ten”"
                 .replaceAll("[“”\\s]","")
                 .split(",");
-        list = new ArrayList(Arrays.asList(strArr));
+        list = new ArrayList<>(Arrays.asList(strArr));
+
         writeListToOutputFile(outputFilePath);
     }
 

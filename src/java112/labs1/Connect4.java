@@ -277,7 +277,7 @@ public class Connect4
                 StringTokenizer tTokensOnLine = new StringTokenizer(tInput, ",");
 
                 String tThisToken = tTokensOnLine.nextToken();
-                X = new Integer(tThisToken).intValue();
+                X = Integer.parseInt(tThisToken);
 
                 if (X<=GRID_WIDTH || X==-1){
                     VALID=true;
