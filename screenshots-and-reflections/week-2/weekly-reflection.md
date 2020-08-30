@@ -9,4 +9,4 @@ I got stuck on the lab2. Firstly, I did it that the run method could accept from
 However, it should be hardcoded in the main.
 #### What additional resources did you use or what help did you receive to complete your work? 
 
-No, additional resources were used.
+No additional resources were used.
