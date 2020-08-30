@@ -6,9 +6,7 @@ import java.util.*;
 /**
  *
  * The app write to a file
- * from the provided input file,
- * and handle checked exceptions
- * with try-catch
+ * list values provided by cmd argument
  *
  * @author mturchanov
  *
@@ -19,12 +17,11 @@ public class LabSeven {
     /**
      *
      * The entry point of application where
-     * we write to file the provided input
+     * app writes to a file the provided input
      * if two args were provided
      *
      * @param args the input argument that indicates
-     * a path file to read
-     * and a path file to write
+     * a path file to write
      *
      */
     public static void main(String[] args) {
@@ -38,7 +35,7 @@ public class LabSeven {
     /**
      *
      * Initialize and set values
-     * to the list
+     * for the list
      *
      * @param outputFilePath the command line argument
      *   that indicates the path for file to write

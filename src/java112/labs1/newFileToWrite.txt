@@ -1,50 +1,20 @@
-one
- two
- three
- four
- five
- six
- seven
- eight
- nine
- ten
-one
-two
-three
-four
-five
-six
-seven
 eight
-nine
-ten
-one
-two
-three
-four
 five
-six
-seven
-eight
-nine
-ten
-one
-two
-three
 four
-five
-six
-seven
-eight
 nine
-ten
 one
-two
-three
-four
-five
-six
 seven
-eight
-nine
+six
 ten
+three
+two
+five
+four
+one
+three
+two
+five
+four
+one
+three
+two
