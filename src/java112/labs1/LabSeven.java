@@ -1,0 +1,77 @@
+package java112.labs1;
+
+import java.io.*;
+import java.util.*;
+
+/**
+ *
+ * The app write to a file
+ * from the provided input file,
+ * and handle checked exceptions
+ * with try-catch
+ *
+ * @author mturchanov
+ *
+ */
+public class LabSeven {
+    private List<String> list;
+
+    /**
+     *
+     * The entry point of application where
+     * we write to file the provided input
+     * if two args were provided
+     *
+     * @param args the input argument that indicates
+     * a path file to read
+     * and a path file to write
+     *
+     */
+    public static void main(String[] args) {
+        if(args.length != 1) {
+            System.out.println("Please enter one argument on the command line, an output file name");
+        } else {
+            new LabSeven().run(args[0]);
+        }
+    }
+
+    /**
+     *
+     * Initialize and set values
+     * to the list
+     *
+     * @param outputFilePath the command line argument
+     *   that indicates the path for file to write
+     *
+     */
+    public void run(String outputFilePath) {
+        String[] strArr = "“one”, “two”, “three”, “four”, “five”, “six”, “seven”, “eight”, “nine”, “ten”"
+                .replaceAll("[“”\\s]","")
+                .split(",");
+        list = new ArrayList(Arrays.asList(strArr));
+        writeListToOutputFile(outputFilePath);
+    }
+
+    /**
+     *
+     * Writing to a specified file
+     * list's string values
+     *
+     * @param outputFilePath the command line argument
+     *   that indicates the path for file to write
+     *
+     */
+    public void writeListToOutputFile(String outputFilePath) {
+       try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFilePath,true)))) {
+           for(String str : list) pw.println(str);
+       } catch (FileNotFoundException fileNotFoundException) {
+           fileNotFoundException.printStackTrace();
+       } catch (IOException ioException) {
+           ioException.printStackTrace();
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       System.out.printf("List data were written to the \"%s\"%n", outputFilePath
+               .replaceAll("^.+/", ""));
+    }
+}
