@@ -2,7 +2,7 @@ package java112.labs1;
 
 /**
  * 
- * The app provides TDD
+ * The app provided TDD
  * practice
  * 
  * @author mturchanov
@@ -11,16 +11,16 @@ package java112.labs1;
 public class MysteryClassOne {
     /**
      * 
-     * the app is returning int value
+     * the app returns int value
      * 
      * @return needed integer value according to tests
      */
     public int mysteryMethodOne() { return 1; }
 
     /**
-     * main run method
+     * Entry point of the app
      * 
-     * @param args
+     * @param args command line arguments
      */
     public static void main(String[] args){
         System.out.println("returned " + new MysteryClassOne().mysteryMethodOne());
