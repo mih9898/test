@@ -7,32 +7,20 @@ public class FileAnalysis {
     private FileSummaryAnalyzer summaryAnalyzer;
     public static final int VALID_ARG_NUM = 1;
 
-    /**
-     * 1. The method tests if 1 cmd argument was entered. If the correct number is not entered then terminate
-     * The method will then call other methods to perform these tasks:
-     * 2. Create an instance of each Analyzer class and assign each instance to their respective instance variables:
-     * summaryAnalyzer and distinctAnalyzer.
-     * 3.Open the input file.
-     * Loop through all the lines of the input file and generate individual tokens.
-     * 4. Pass generated tokens to all Analyzer instances via the processToken() method.
-     * 5. Call the generateOutputFile() method for each Analyzer class in a method named writeOutputFiles().
-     *
-     * @param arguments
-     */
-    public void analyze(String[] arguments) throws IOException {
-        if (arguments.length != 1) {
+    public void analyze(String[] arguments) {
+        if (arguments.length != VALID_ARG_NUM) {
             System.out.println("Please enter the right input to process");
         } else {
             distinctAnalyzer = new DistinctTokensAnalyzer();
             distinctAnalyzer.processToken(getFileInput(arguments[0]));
             summaryAnalyzer = new FileSummaryAnalyzer();
-            summaryAnalyzer.generateOutputFile(arguments[0], "/home/student/GitHubRepos/projects/output/analysis.txt");
-            distinctAnalyzer.generateOutputFile(arguments[0], "/home/student/GitHubRepos/projects/output/analysis.txt");
+            WriteOutputFile(arguments[0], "/home/student/GitHubRepos/projects/output/summary.txt");
         }
     }
 
-    public void writeOutputFiles (String fileToWrite) {
-
+    public void WriteOutputFile (String fileToRead, String fileToWrite) {
+        summaryAnalyzer.generateOutputFile(fileToRead, fileToWrite);
+        distinctAnalyzer.generateOutputFile(fileToRead, fileToWrite);
     }
 
     public String getFileInput(String path) {
@@ -50,7 +38,6 @@ public class FileAnalysis {
         }
         return sb.toString();
     }
-
 }
 
 

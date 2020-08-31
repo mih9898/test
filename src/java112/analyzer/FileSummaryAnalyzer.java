@@ -21,6 +21,9 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
 
     @Override
     public void processToken(String token) {
+        DistinctTokensAnalyzer distinctTokensAnalyzer = new DistinctTokensAnalyzer();
+        distinctTokensAnalyzer.processToken(token);
+        totalTokensCount = distinctTokensAnalyzer.getDistinctTokens().size();
     }
 
     public String getCurrentTime() {
@@ -29,7 +32,6 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         //System.out.println(format.format(dd));
         return format.format(dd);
     }
-
     public String getLastModifiedTime (String path) {
         File file = new File(path);
         Date lastModified = new Date(file.lastModified());
@@ -48,20 +50,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
 
     @Override
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
-        String summary = "Application: %s%n" +
-                "Author: %s%n" +
-                "Author email: %s%n" +
-                "File: %s%n" +
-                "Date of analysis: %s%n" +
-                "Last modified: %s%n" +
-                "File Size: %d%n" +
-                "File URI: %s";
-
-        summary = String.format(summary, "Analyzer", "Mike Turchanov", "mturchanov@madisoncolege.edu", inputFilePath, getCurrentTime(),
-                getLastModifiedTime(inputFilePath), getFileSize(inputFilePath), getFileURI(inputFilePath));
-
         try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFilePath)))) {
-           pw.write(summary);
+           pw.write(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
@@ -69,5 +59,19 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String createReport (String inputFilePath) {
+        String summary = "Application: %s%n" +
+                "Author: %s%n" +
+                "Author email: %s%n" +
+                "File: %s%n" +
+                "Date of analysis: %s%n" +
+                "Last modified: %s%n" +
+                "File Size: %d%n" +
+                "File URI: %s%n";
+
+        return String.format(summary, "Analyzer", "Mike Turchanov", "mturchanov@madisoncolege.edu", inputFilePath, getCurrentTime(),
+                getLastModifiedTime(inputFilePath), getFileSize(inputFilePath), getFileURI(inputFilePath));
     }
 }

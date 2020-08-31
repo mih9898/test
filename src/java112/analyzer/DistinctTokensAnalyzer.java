@@ -28,7 +28,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
                 distinctTokens.add(str);
             }
         }
-
         System.out.println("unique words: " + distinctTokens.size());
     }
 
