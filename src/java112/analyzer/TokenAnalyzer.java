@@ -1,4 +1,4 @@
-package java112.project1;
+package java112.analyzer;
 
 public interface TokenAnalyzer {
     void processToken(String token);
