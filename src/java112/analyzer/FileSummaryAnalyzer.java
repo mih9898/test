@@ -1,8 +1,6 @@
 package java112.analyzer;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,7 +11,7 @@ import java.util.Date;
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer {
     // Only allowed instance variable
-    private int totalTokensCount;
+    protected int totalTokensCount;
 
     public int getTotalTokensCount() {
         return totalTokensCount;
@@ -21,9 +19,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
 
     @Override
     public void processToken(String token) {
-        DistinctTokensAnalyzer distinctTokensAnalyzer = new DistinctTokensAnalyzer();
-        distinctTokensAnalyzer.processToken(token);
-        totalTokensCount = distinctTokensAnalyzer.getDistinctTokens().size();
+        totalTokensCount = token.split(" ").length;
+    }
+    public void processToken(int totalTokensCount) {
+        this.totalTokensCount = totalTokensCount;
     }
 
     public String getCurrentTime() {
@@ -50,6 +49,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
 
     @Override
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
+
         try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFilePath)))) {
            pw.write(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
@@ -69,9 +69,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
                 "Date of analysis: %s%n" +
                 "Last modified: %s%n" +
                 "File Size: %d%n" +
-                "File URI: %s%n";
+                "File URI: %s%n" +
+                "Total Tokens: %d%n";
 
         return String.format(summary, "Analyzer", "Mike Turchanov", "mturchanov@madisoncolege.edu", inputFilePath, getCurrentTime(),
-                getLastModifiedTime(inputFilePath), getFileSize(inputFilePath), getFileURI(inputFilePath));
+                getLastModifiedTime(inputFilePath), getFileSize(inputFilePath), getFileURI(inputFilePath), totalTokensCount);
     }
 }
