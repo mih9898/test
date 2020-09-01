@@ -13,7 +13,7 @@ public class LabFive {
      * Writes data to a text file
      *
      * @param path the command line argument
-     *   that indicates the path for file to write
+     * that indicates the path for file to write
      *
      * @param dataToWrite the data to write
      */

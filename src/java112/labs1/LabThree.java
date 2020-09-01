@@ -1,13 +1,13 @@
 package java112.labs1;
 
 /**
- * The Lab three that continue to
- * implement TDD principles.
+ * The Lab three continues to
+ * implement and practice TDD principles.
  */
 public class LabThree {
 
     /**
-     * Output first argument of the command line
+     * Outputs first argument of the command line
      *
      * @param str the first command line string/arg
      */

@@ -49,7 +49,7 @@ public class LabEight {
      * sorted set's values
      *
      * @param outputFilePath the command line argument
-     *   that indicates the path for file to write
+     * that indicates the path for file to write
      */
     public void writeSetToOutputFile (String outputFilePath) {
         try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
