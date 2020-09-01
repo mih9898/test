@@ -14,7 +14,7 @@ public class LabFour {
      * and displays it.
      *
      * @param path the command line argument
-     *   that indicates the path for to read the file
+     * that indicates the path for to read the file
      */
     public void run(String path)  {
         try(BufferedReader bufferedReader = new BufferedReader(
@@ -41,7 +41,8 @@ public class LabFour {
         if(args.length != 1) {
             System.out.println("Please enter one argument on the command line");
         } else {
-            new LabFour().run(args[0]);
+            LabFour output = new LabFour();
+            output.run(args[0]);
         }
     }
 }

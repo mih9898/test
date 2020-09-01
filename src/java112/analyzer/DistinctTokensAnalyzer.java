@@ -57,8 +57,8 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
-            for(String s : distinctTokens){
-                printWriter.println(s);
+            for(String word : distinctTokens){
+                printWriter.println(word);
             }
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

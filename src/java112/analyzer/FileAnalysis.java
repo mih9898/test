@@ -30,6 +30,7 @@ public class FileAnalysis {
             initializeAnalyzers();
             processAnalyzers (arguments[0]);
             writeOutputFiles(arguments[0]);
+            System.out.println("File was successfully analyzed");
         }
     }
 
@@ -80,7 +81,7 @@ public class FileAnalysis {
                 new InputStreamReader(new FileInputStream(path)))
         ) {
             while (bufferedReader.ready()){
-                line.append(bufferedReader.readLine()).append(System.lineSeparator());
+                line.append(bufferedReader.readLine());
             }
         } catch(FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

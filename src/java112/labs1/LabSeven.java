@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The app write to a file
+ * The app writes to a file
  * list values provided by cmd argument
  *
  * @author mturchanov
@@ -37,10 +37,10 @@ public class LabSeven {
      *   that indicates the path for file to write
      */
     public void run(String outputFilePath) {
-        String[] strArr = "“one”, “two”, “three”, “four”, “five”, “six”, “seven”, “eight”, “nine”, “ten”"
+        String[] words = "“one”, “two”, “three”, “four”, “five”, “six”, “seven”, “eight”, “nine”, “ten”"
                 .replaceAll("[“”\\s]","")
                 .split(",");
-        list = new ArrayList<>(Arrays.asList(strArr));
+        list = new ArrayList<>(Arrays.asList(words));
         writeListToOutputFile(outputFilePath);
     }
 
@@ -54,7 +54,7 @@ public class LabSeven {
     public void writeListToOutputFile(String outputFilePath) {
        try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
                new FileWriter(outputFilePath,true)))) {
-           for(String str : list) printWriter.println(str);
+           for(String word : list) printWriter.println(word);
        } catch (FileNotFoundException fileNotFoundException) {
            fileNotFoundException.printStackTrace();
        } catch (IOException ioException) {

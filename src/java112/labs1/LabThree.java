@@ -11,8 +11,8 @@ public class LabThree {
      *
      * @param str the first command line string/arg
      */
-    public void run(String str) {
-        System.out.println("input: " + str);
+    public void run(String inputValue) {
+        System.out.println("input: " + inputValue);
     }
 
     /**

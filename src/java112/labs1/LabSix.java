@@ -20,14 +20,14 @@ public class LabSix {
      */
     public void run(String fileToRead, String fileToWrite)  {
         try (
-                BufferedReader br = new BufferedReader(
+                BufferedReader bufferedReader = new BufferedReader(
                         new InputStreamReader(new FileInputStream(fileToRead)));
-                BufferedWriter bw = new BufferedWriter(
+                BufferedWriter bufferedWriter = new BufferedWriter(
                         new OutputStreamWriter(new FileOutputStream(fileToWrite, true)))
         ) {
-            while(br.ready()){
-                bw.write(br.readLine());
-                bw.write(System.lineSeparator());
+            while(bufferedReader.ready()){
+                bufferedWriter.write(bufferedReader.readLine());
+                bufferedWriter.write(System.lineSeparator());
             }
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

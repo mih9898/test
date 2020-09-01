@@ -10,7 +10,7 @@ import java.util.*;
  * @author mturchanov
  */
 public class LabEight {
-    private Set<String> set;
+    private Set<String> uniqueWords;
 
     /**
      * The entry point of application where
@@ -40,7 +40,7 @@ public class LabEight {
         String[] strArr = "“one”, “one”, “five”, “two”, “four”, “two”, “three”, “three”, “four”, “three”"
                 .replaceAll("[“”\\s]","")
                 .split(",");
-        set = new TreeSet<>(Arrays.asList(strArr));
+        uniqueWords = new TreeSet<>(Arrays.asList(strArr));
         writeSetToOutputFile(outputFilePath);
     }
 
@@ -54,7 +54,7 @@ public class LabEight {
     public void writeSetToOutputFile (String outputFilePath) {
         try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
                 new FileWriter(outputFilePath,true)))) {
-            for(String str : set) printWriter.println(str);
+            for(String word : uniqueWords) printWriter.println(word);
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {

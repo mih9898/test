@@ -8,7 +8,7 @@ import java.util.Date;
  * This class analyzes tokens from
  * provided input text file
  * and creates a summary
- * on it
+ * of it
  *
  * @author mturchanov
  */
@@ -88,7 +88,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     }
 
     /**
-     * Generate file with a summary
+     * Generates file with a summary
      *
      * @param inputFilePath  the input file path
      * @param outputFilePath the output file path
@@ -109,7 +109,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     }
 
     /**
-     * Create report of text file.
+     * Creates report of a text file.
      *
      * @param inputFilePath the input file path
      * @return the string

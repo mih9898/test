@@ -41,8 +41,9 @@ public class LabFive {
         if(args.length != 2) {
             System.out.println("Please enter two arguments on the command line, a file name and a message");
         } else {
-            new LabFive().run(args[0], args[1]);
-            System.out.printf("Data were written to the \"%s\"%n", args[0].replaceAll("^.+\\/", ""));
+            LabFive output = new LabFive();
+            output.run(args[0], args[1]);
+            System.out.printf("Data were written to the \"%s\"%n", args[0].replaceAll("^.+/", ""));
         }
     }
 }

@@ -1,18 +1,17 @@
 package java112.labs1;
 
 /**
- * 
  * The app provided TDD
  * practice
  * 
  * @author mturchanov
- * 
  */
 public class MysteryClassOne {
     /**
      * the app returns value 1
      * 
-     * @return needed integer value according to tests
+     * @return The needed number
+     * according to test cases
      */
     public int mysteryMethodOne() { return 1; }
 
