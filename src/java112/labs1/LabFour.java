@@ -3,27 +3,25 @@ package java112.labs1;
 import java.io.*;
 
 /**
- * The app reads the text file,
- * and handle checked exceptions
- * with try-catch
+ * The app reads a text file 
+ * and displays its content
  *
  * @author mturchanov
- *
  */
 public class LabFour {
     /**
-     *
-     * Reading a text file
-     * and displaying it.
+     * Reads a text file
+     * and displays it.
      *
      * @param path the command line argument
      *   that indicates the path for to read the file
-     *
      */
     public void run(String path)  {
-        try( BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path)))) {
-            while (br.ready()) {
-                System.out.println(br.readLine());
+        try(BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(path)))
+        ) {
+            while (bufferedReader.ready()) {
+                System.out.println(bufferedReader.readLine());
             }
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
@@ -35,12 +33,9 @@ public class LabFour {
     }
 
     /**
-     * The entry point of application where
-     * we output the text file if appropriate
-     * argument is provided
+     * The entry point of application
      *
      * @param args the input argument that indicates the path for a file
-     *
      */
     public static void main(String[] args) {
         if(args.length != 1) {

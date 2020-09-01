@@ -25,7 +25,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     }
 
     /**
-     * Process text and sets a number of 
+     * Processes text and sets a number of 
      * unique words for 
      * {@link #totalTokensCount}
      * 
@@ -33,9 +33,9 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      */
     @Override
     public void processToken(String token) {
-        String[] test = token.split("\\W");
-        for(String s : test) {
-            if(!s.isEmpty()) {
+        String[] textInput = token.split("\\W");
+        for(String word : textInput) {
+            if(!word.isEmpty()) {
                 totalTokensCount++;
             }
         }
@@ -47,10 +47,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      * @return the current time
      */
     public String getCurrentTime() {
-        Date dd = new Date();
-        SimpleDateFormat format = new SimpleDateFormat(
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat(
                 "E MMM M HH:mm:ss z yyyy");
-        return format.format(dd);
+        return formatter.format(date);
     }
 
     /**
@@ -95,12 +95,10 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      */
     @Override
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
-        try (
-                PrintWriter pw = new PrintWriter(
-                new BufferedWriter(
-                        new FileWriter(outputFilePath)))
+        try (PrintWriter printWriter = new PrintWriter(
+                new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
-           pw.write(createReport(inputFilePath));
+           printWriter.write(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {

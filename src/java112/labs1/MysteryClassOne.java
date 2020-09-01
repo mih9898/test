@@ -10,8 +10,7 @@ package java112.labs1;
  */
 public class MysteryClassOne {
     /**
-     * 
-     * the app returns int value
+     * the app returns value 1
      * 
      * @return needed integer value according to tests
      */

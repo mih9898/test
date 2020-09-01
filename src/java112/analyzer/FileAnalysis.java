@@ -4,6 +4,7 @@ import java.io.*;
 
 /**
  * This class analyzes a file
+ *
  * @author mturchanov
  */
 public class FileAnalysis {
@@ -33,7 +34,7 @@ public class FileAnalysis {
     }
 
     /**
-     * Process analyzers.
+     * Processes analyzers.
      *
      * @param fileToRead the file to read
      */
@@ -43,7 +44,7 @@ public class FileAnalysis {
     }
 
     /**
-     * Initialize analyzers.
+     * Initializes analyzers.
      */
     public void initializeAnalyzers() {
         this.distinctAnalyzer = new DistinctTokensAnalyzer();
@@ -51,7 +52,7 @@ public class FileAnalysis {
     }
 
     /**
-     * Write output files.
+     * Writes output files.
      *
      * @param fileToRead the file to read
      */
@@ -61,7 +62,7 @@ public class FileAnalysis {
     }
 
     /**
-     * Output error message.
+     * Outputs error message.
      */
     public void outputErrorMessage() {
         System.out.println("Please enter the right input to process");
@@ -74,14 +75,12 @@ public class FileAnalysis {
      * @return the file input
      */
     public String getFileInput(String path) {
-        StringBuilder sb = new StringBuilder();
-        try (
-                BufferedReader br = new BufferedReader(
-                new InputStreamReader(
-                        new FileInputStream(path)))
+        StringBuilder line = new StringBuilder();
+        try (BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(new FileInputStream(path)))
         ) {
-            while (br.ready()){
-                sb.append(br.readLine()).append(System.lineSeparator());
+            while (bufferedReader.ready()){
+                line.append(bufferedReader.readLine()).append(System.lineSeparator());
             }
         } catch(FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
@@ -90,7 +89,7 @@ public class FileAnalysis {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return sb.toString();
+        return line.toString();
     }
 }
 

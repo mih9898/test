@@ -3,30 +3,25 @@ package java112.labs1;
 import java.io.*;
 
 /**
- * The app write to a text file,
- * and handle checked exceptions
- * with try-catch
+ * The app write to a text file
  *
  * @author mturchanov
- *
  */
 public class LabFive {
 
      /**
-     *
-     * Reading a text file
-     * and displaying it.
+     * Writes data to a text file
      *
      * @param path the command line argument
      *   that indicates the path for file to write
      *
      * @param dataToWrite the data to write
-     *
      */
-
     public void run(String path, String dataToWrite)  {
-        try( BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true)))) {
-            bw.write(dataToWrite);
+        try(BufferedWriter bufferedWriter = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(path, true)))
+        ) {
+            bufferedWriter.write(dataToWrite);
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
@@ -38,11 +33,9 @@ public class LabFive {
 
     /**
      * The entry point of application where
-     * we write to file if two args are provided
      *
      * @param args the input argument that indicates the path for a file
      * and data to write
-     *
      */
     public static void main(String[] args) {
         if(args.length != 2) {

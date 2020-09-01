@@ -3,31 +3,27 @@ package java112.labs1;
 import java.io.*;
 
 /**
- *
- * The app write to a file
- * from the provided input file,
- * and handle checked exceptions
- * with try-catch
+ * The app makes a copy
+ * of a text file
  *
  * @author mturchanov
- *
  */
 public class LabSix {
     /**
-     *
-     * Writing to a specified file
-     * provided input
+     * Writes provided input
+     * to a specified file
      *
      * @param fileToRead the command line argument
-     *   that indicates the path for file to write
+     *   that indicates the path for a file to write
      *
      * @param fileToWrite the data to write
-     *
      */
     public void run(String fileToRead, String fileToWrite)  {
         try (
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileToRead)));
-                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileToWrite, true)))
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(new FileInputStream(fileToRead)));
+                BufferedWriter bw = new BufferedWriter(
+                        new OutputStreamWriter(new FileOutputStream(fileToWrite, true)))
         ) {
             while(br.ready()){
                 bw.write(br.readLine());
@@ -43,19 +39,16 @@ public class LabSix {
     }
 
     /**
-     *
      * The entry point of application where
-     * we write to file the provided input
-     * if two args were provided
      *
      * @param args the input argument that indicates
      * a path file to read
      * and a path file to write
-     *
      */
     public static void main(String[] args) {
         if(args.length != 2) {
-            System.out.println("Please enter two arguments on the command line, an input file name and an output file name");
+            System.out.println("Please enter two arguments on the command line,"
+                    + "an input file name and an output file name");
         } else {
             new LabSix().run(args[0], args[1]);
             System.out.printf("Data from \"%s\" were written to the \"%s\"%n",

@@ -24,8 +24,8 @@ public class LabThree {
         if (args.length != 1) {
             System.out.println("Please enter one argument on the command line");
         } else {
-            LabThree lt = new LabThree();
-            lt.run(args[0]);
+            LabThree labThreeOutput = new LabThree();
+            labThreeOutput.run(args[0]);
         }
     }
 }

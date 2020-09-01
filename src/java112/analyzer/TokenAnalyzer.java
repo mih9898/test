@@ -6,14 +6,14 @@ package java112.analyzer;
  */
 public interface TokenAnalyzer {
     /**
-     * Process token.
+     * Processes token.
      *
      * @param token the token
      */
     void processToken(String token);
 
     /**
-     * Generate output file.
+     * Generates output file.
      *
      * @param inputFilePath  the input file path
      * @param outputFilePath the output file path
