@@ -54,7 +54,9 @@ public class LabSeven {
     public void writeListToOutputFile(String outputFilePath) {
        try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
                new FileWriter(outputFilePath,true)))) {
-           for(String word : list) printWriter.println(word);
+           for(String word : list) {
+               printWriter.println(word);
+           }
        } catch (FileNotFoundException fileNotFoundException) {
            fileNotFoundException.printStackTrace();
        } catch (IOException ioException) {

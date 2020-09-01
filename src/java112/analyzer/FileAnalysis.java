@@ -81,7 +81,7 @@ public class FileAnalysis {
                 new InputStreamReader(new FileInputStream(path)))
         ) {
             while (bufferedReader.ready()){
-                line.append(bufferedReader.readLine());
+                line.append(bufferedReader.readLine()).append(System.lineSeparator());
             }
         } catch(FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();

@@ -54,7 +54,9 @@ public class LabEight {
     public void writeSetToOutputFile (String outputFilePath) {
         try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
                 new FileWriter(outputFilePath,true)))) {
-            for(String word : uniqueWords) printWriter.println(word);
+            for(String word : uniqueWords) {
+                printWriter.println(word);
+            }
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {

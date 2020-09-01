@@ -9,7 +9,7 @@ public class LabThree {
     /**
      * Outputs first argument of the command line
      *
-     * @param str the first command line string/arg
+     * @param inputValue the first command line string/arg
      */
     public void run(String inputValue) {
         System.out.println("input: " + inputValue);
