@@ -5,52 +5,101 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * This class analyzes tokens from
+ * provided input text file
+ * and creates a summary
+ * on it
  *
- * creates the summary report
- *
+ * @author mturchanov
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer {
-    // Only allowed instance variable
-    protected int totalTokensCount;
+    private int totalTokensCount;
 
+    /**
+     * Gets total tokens count.
+     *
+     * @return the total tokens count
+     */
     public int getTotalTokensCount() {
         return totalTokensCount;
     }
 
+    /**
+     * Process text and sets a number of 
+     * unique words for 
+     * {@link #totalTokensCount}
+     * 
+     * @param token the token
+     */
     @Override
     public void processToken(String token) {
-        totalTokensCount = token.split(" ").length;
-    }
-    public void processToken(int totalTokensCount) {
-        this.totalTokensCount = totalTokensCount;
+        String[] test = token.split("\\W");
+        for(String s : test) {
+            if(!s.isEmpty()) {
+                totalTokensCount++;
+            }
+        }
     }
 
+    /**
+     * Gets current time.
+     *
+     * @return the current time
+     */
     public String getCurrentTime() {
         Date dd = new Date();
-        SimpleDateFormat format = new SimpleDateFormat("E MMM M HH:mm:ss z yyyy");
-        //System.out.println(format.format(dd));
+        SimpleDateFormat format = new SimpleDateFormat(
+                "E MMM M HH:mm:ss z yyyy");
         return format.format(dd);
     }
-    public String getLastModifiedTime (String path) {
+
+    /**
+     * Gets file's last modified time.
+     *
+     * @param path the path
+     * @return the file's last modified time
+     */
+    public String getsFileLastModifiedTime(String path) {
         File file = new File(path);
         Date lastModified = new Date(file.lastModified());
-        SimpleDateFormat format = new SimpleDateFormat("E MMM M HH:mm:ss z yyyy");
-        //System.out.println(format.format(lastModified));
+        SimpleDateFormat format = new SimpleDateFormat(
+                "E MMM M HH:mm:ss z yyyy");
         return format.format(lastModified);
     }
 
-    public long getFileSize (String path) {
+    /**
+     * Gets file size.
+     *
+     * @param path the path
+     * @return the file size
+     */
+    public long getFileSize(String path) {
         return new File(path).length();
     }
 
-    public String getFileURI (String path) {
+    /**
+     * Gets file uri.
+     *
+     * @param path the path
+     * @return the file uri
+     */
+    public String getFileURI(String path) {
         return new File(path).toURI().toString();
     }
 
+    /**
+     * Generate file with a summary
+     *
+     * @param inputFilePath  the input file path
+     * @param outputFilePath the output file path
+     */
     @Override
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
-
-        try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(outputFilePath)))) {
+        try (
+                PrintWriter pw = new PrintWriter(
+                new BufferedWriter(
+                        new FileWriter(outputFilePath)))
+        ) {
            pw.write(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
@@ -61,18 +110,25 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         }
     }
 
-    public String createReport (String inputFilePath) {
-        String summary = "Application: %s%n" +
-                "Author: %s%n" +
-                "Author email: %s%n" +
-                "File: %s%n" +
-                "Date of analysis: %s%n" +
-                "Last modified: %s%n" +
-                "File Size: %d%n" +
-                "File URI: %s%n" +
-                "Total Tokens: %d%n";
+    /**
+     * Create report of text file.
+     *
+     * @param inputFilePath the input file path
+     * @return the string
+     */
+    public String createReport(String inputFilePath) {
+        String summaryTemplate = "%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n"
+                + "%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n"
+                + "%-20s%-11s%n%-20s%-11s%n";
 
-        return String.format(summary, "Analyzer", "Mike Turchanov", "mturchanov@madisoncolege.edu", inputFilePath, getCurrentTime(),
-                getLastModifiedTime(inputFilePath), getFileSize(inputFilePath), getFileURI(inputFilePath), totalTokensCount);
+        return String.format(summaryTemplate, "Application", "Analyzer",
+                "Author", "Mike Turchanov",
+                "Author email", "mturchanov@madisoncolege.edu",
+                "File", inputFilePath,
+                "Date of analysis", getCurrentTime(),
+                "Last modified", getsFileLastModifiedTime(inputFilePath),
+                "File Size", getFileSize(inputFilePath),
+                "File URI", getFileURI(inputFilePath),
+                "Total Tokens", totalTokensCount);
     }
 }

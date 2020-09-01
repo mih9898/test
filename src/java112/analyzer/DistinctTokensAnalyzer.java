@@ -1,43 +1,62 @@
 package java112.analyzer;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Set;
 import java.util.TreeSet;
 
+
 /**
- *
- *  create the report of all distinct tokens
- *
+ * This class analyzes
+ * a number of distinct tokens in
+ * a text file
  */
 public class DistinctTokensAnalyzer implements TokenAnalyzer {
-    // Only allowed instance variable
-    private Set<String> distinctTokens;
-    public Set<String> getDistinctTokens() {
-        return distinctTokens;
-    }
-    public static final String OUTPUT_DIST_TOKENS_PATH = "/home/student/GitHubRepos/projects/output/distinct_tokens.txt";
 
+
+    private Set<String> distinctTokens;
 
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
     }
 
+    /**
+     * Gets distinct tokens.
+     *
+     * @return the distinct tokens
+     */
+    public Set<String> getDistinctTokens() {
+        return distinctTokens;
+    }
+
+    /**
+     * Process text file
+     * and count a number
+     * of unique words
+     *
+     * @param token the token
+     */
     @Override
     public void processToken(String token) {
         for(String str : token.split("\\W")) {
-            if(!str.equals("")) distinctTokens.add(str.toLowerCase());
-//            if(!str.isEmpty()) {
-//                distinctTokens.add(str);
-//            }
+            if(!str.isEmpty()) {
+                distinctTokens.add(str);
+            }
         }
-        System.out.println("unique words: " + distinctTokens.size());
     }
 
+    /**
+     * Generate file with unique words
+     *
+     * @param inputFilePath  the input file path
+     * @param outputFilePath the output file path
+     */
     @Override
     public void generateOutputFile(String inputFilePath, String outputFilePath) {
-        try(PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(OUTPUT_DIST_TOKENS_PATH, true)))) {
+        try (
+                PrintWriter pw = new PrintWriter(
+                        new BufferedWriter(
+                                new FileWriter(outputFilePath)))
+        ) {
             for(String s : distinctTokens){
                 pw.println(s);
             }
@@ -49,5 +68,4 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
             e.printStackTrace();
         }
     }
-
 }
