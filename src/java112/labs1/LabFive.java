@@ -9,7 +9,7 @@ import java.io.*;
  */
 public class LabFive {
 
-     /**
+    /**
      * Writes data to a text file
      *
      * @param path the command line argument

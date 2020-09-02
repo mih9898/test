@@ -52,19 +52,19 @@ public class LabSeven {
      *   that indicates the path for file to write
      */
     public void writeListToOutputFile(String outputFilePath) {
-       try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
-               new FileWriter(outputFilePath,true)))) {
-           for(String word : list) {
-               printWriter.println(word);
-           }
-       } catch (FileNotFoundException fileNotFoundException) {
-           fileNotFoundException.printStackTrace();
-       } catch (IOException ioException) {
-           ioException.printStackTrace();
-       } catch (Exception e) {
-           e.printStackTrace();
-       }
-       System.out.printf("List data were written to the \"%s\"%n", outputFilePath
-               .replaceAll("^.+/", ""));
+        try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
+                new FileWriter(outputFilePath,true)))) {
+            for(String word : list) {
+                printWriter.println(word);
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            fileNotFoundException.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.printf("List data were written to the \"%s\"%n", outputFilePath
+                .replaceAll("^.+/", ""));
     }
 }

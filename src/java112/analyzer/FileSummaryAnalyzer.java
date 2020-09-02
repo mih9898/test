@@ -28,7 +28,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      * Processes text and sets a number of 
      * unique words for 
      * {@link #totalTokensCount}
-     * 
+     *
      * @param token the token
      */
     @Override
@@ -98,7 +98,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
-           printWriter.write(createReport(inputFilePath));
+            printWriter.write(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
