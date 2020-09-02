@@ -14,11 +14,9 @@ public class LabSeven {
 
     /**
      * The entry point of application where
-     * app writes to a file the provided input
-     * if two args were provided
      *
      * @param args the input argument that indicates
-     * a path file to write
+     * a path for file to write
      */
     public static void main(String[] args) {
         if(args.length != 1) {
@@ -30,8 +28,8 @@ public class LabSeven {
     }
 
     /**
-     * Initialize and set values
-     * for the output list
+     * Initializes and sets values
+     * for the output
      *
      * @param outputFilePath the command line argument
      *   that indicates the path for file to write
@@ -45,8 +43,8 @@ public class LabSeven {
     }
 
     /**
-     * Writing to a specified file
-     * list's values
+     * Writes to a specified file
+     * values
      *
      * @param outputFilePath the command line argument
      *   that indicates the path for file to write

@@ -34,7 +34,7 @@ import java.util.*;
  *
  * @return TODO 6.
  *  this tag is used whenever method returns non-void value
- *  It describes what returned value is responsible for
+ *  It describes for what returned value is responsible for
  *
  * @throws <TODO 7.
  *  this tag is used whenever a method throws an exception
@@ -45,10 +45,11 @@ import java.util.*;
  * it's useful to refer to information about related methods/classes
  *
  * @since TODO 9.
- * this tag is used to indicate the date
+ * this tag defines app or method version when
+ * it firstly was written
  *
  * TODO 10.
- * This comment appears down below
+ * This comment appears down below class description
  *
  * TODO 11.
  * Add some html tags within your comments above to improve formatting and readability
@@ -77,7 +78,7 @@ public class Connect4
 
 	/**
      * <!--TODO 13. Write proper javadoc for this method. Think about What exceptions should be javadoc'd here?-->
-     * Output progress of the application
+     * Outputs progress of the application
      *
      * @param pArgs command line arguments
      * @throws IOException throws NumberFormatException or NoSuchElementException from {@link #GetMove()}
@@ -144,8 +145,7 @@ public class Connect4
 	/** <!--TODO 15. Write proper javadoc for this method. Should any exceptions be documented here?
      * There is no sense to process a possible runtime exception, ArrayIndexOutOfBoundsException-->
      *
-     *
-     * Print a grid that shows the progress
+     * Prints a grid that shows the progress
      * of the application
      *
      * @param aGrid a grid where progress is shown
@@ -299,10 +299,10 @@ public class Connect4
 
 	/** <!--TODO 17. Write proper javadoc for this method. Should any exceptions be documented here?*-->
      *
-     * Find Y axis/height of the grid
+     * Finds Y axis/height of the grid
      *
      * @param X X axis coordinate of a grid
-     * @return RETURN_VALUE Sending a current Y axis position on the grid
+     * @return RETURN_VALUE Sends a current Y axis position on the grid
      *
      */
 

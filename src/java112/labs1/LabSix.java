@@ -14,9 +14,9 @@ public class LabSix {
      * to a specified file
      *
      * @param fileToRead the command line argument
-     *   that indicates the path for a file to write
+     *   that indicates the path for a file to read
      *
-     * @param fileToWrite the data to write
+     * @param fileToWrite the file to write
      */
     public void run(String fileToRead, String fileToWrite)  {
         try (

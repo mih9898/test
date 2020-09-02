@@ -7,7 +7,7 @@ package java112.analyzer;
  * creates a list with all unique words
  *
  * @author mturchanov
- * @since 08/31/2020
+ * @since 1.0
  */
 public class Driver {
     /**

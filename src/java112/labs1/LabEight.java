@@ -13,9 +13,7 @@ public class LabEight {
     private Set<String> uniqueWords;
 
     /**
-     * The entry point of application where
-     * we write to file the provided input
-     * if two args were provided
+     * The entry point of application
      *
      * @param args the input argument that indicates
      * a path file to write

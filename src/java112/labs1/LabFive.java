@@ -43,7 +43,8 @@ public class LabFive {
         } else {
             LabFive output = new LabFive();
             output.run(args[0], args[1]);
-            System.out.printf("Data were written to the \"%s\"%n", args[0].replaceAll("^.+/", ""));
+            System.out.printf("Data were written to the \"%s\"%n",
+                    args[0].replaceAll("^.+/", ""));
         }
     }
 }
