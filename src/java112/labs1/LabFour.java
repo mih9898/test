@@ -16,18 +16,22 @@ public class LabFour {
      * @param path the command line argument
      * that indicates the path for to read the file
      */
+
     public void run(String path)  {
         try(BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(path)))
+                new FileReader(path))
         ) {
             while (bufferedReader.ready()) {
                 System.out.println(bufferedReader.readLine());
             }
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file was not found");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
+            System.out.println("There was problem reading your file");
             ioException.printStackTrace();
         } catch (Exception e) {
+            System.out.println("There was problem");
             e.printStackTrace();
         }
     }
@@ -38,7 +42,7 @@ public class LabFour {
      * @param args the input argument that indicates the path for a file
      */
     public static void main(String[] args) {
-        if(args.length != 1) {
+        if (args.length != 1) {
             System.out.println("Please enter one argument on the command line");
         } else {
             LabFour output = new LabFour();

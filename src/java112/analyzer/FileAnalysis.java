@@ -13,7 +13,6 @@ public class FileAnalysis {
             "/home/student/GitHubRepos/projects/output/summary.txt";
     public static final String OUTPUT_DISTINCT_TOKENS_PATH =
             "/home/student/GitHubRepos/projects/output/distinct_tokens.txt";
-
     private DistinctTokensAnalyzer distinctAnalyzer;
     private FileSummaryAnalyzer summaryAnalyzer;
 
@@ -28,9 +27,9 @@ public class FileAnalysis {
             outputErrorMessage();
         } else {
             initializeAnalyzers();
-            processAnalyzers (arguments[0]);
+            processAnalyzers(arguments[0]);
             writeOutputFiles(arguments[0]);
-            System.out.println("File was successfully analyzed");
+            System.out.println("The app finished its work");
         }
     }
 
@@ -78,16 +77,20 @@ public class FileAnalysis {
     public String getFileInput(String path) {
         StringBuilder line = new StringBuilder();
         try (BufferedReader bufferedReader = new BufferedReader(
-                new InputStreamReader(new FileInputStream(path)))
+                new FileReader(path))
         ) {
             while (bufferedReader.ready()){
-                line.append(bufferedReader.readLine()).append(System.lineSeparator());
+                line.append(bufferedReader.readLine()).
+                        append(System.lineSeparator());
             }
-        } catch(FileNotFoundException fileNotFoundException) {
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The input file was not found");
             fileNotFoundException.printStackTrace();
-        } catch(IOException ioException) {
+        } catch (IOException ioException) {
+            System.out.println("There was problem while reading input file");
             ioException.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
+            System.out.println("There was problem with input file");
             e.printStackTrace();
         }
         return line.toString();

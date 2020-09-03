@@ -39,8 +39,8 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     @Override
     public void processToken(String token) {
-        for(String word : token.split("\\W")) {
-            if(!word.isEmpty()) {
+        for (String word : token.split("\\W")) {
+            if (!word.isEmpty()) {
                 distinctTokens.add(word);
             }
         }
@@ -57,14 +57,17 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
-            for(String word : distinctTokens){
+            for(String word : distinctTokens) {
                 printWriter.println(word);
             }
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file/directory was not found for the distinct tokens file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
+            System.out.println("There was problem writing to the distinct tokens file");
             ioException.printStackTrace();
         } catch (Exception e) {
+            System.out.println("There was problem with a distinct tokens file");
             e.printStackTrace();
         }
     }

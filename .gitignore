@@ -15,7 +15,8 @@ lib/java112Labs.jar
 lib/*.war
 lib/*.ear
 .idea/
-
+src/java112/demos/Server.java
+src/java112/demos/Client.java
 .DS_Store
 
 hs_err_pid*

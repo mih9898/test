@@ -18,17 +18,25 @@ public class LabFive {
      * @param dataToWrite the data to write
      */
     public void run(String path, String dataToWrite)  {
-        try(BufferedWriter bufferedWriter = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(path, true)))
+        try (PrintWriter printWriter = new PrintWriter(
+                new BufferedWriter(new FileWriter(path)))
         ) {
-            bufferedWriter.write(dataToWrite);
+            printWriter.println(dataToWrite);
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file was not found");
             fileNotFoundException.printStackTrace();
+            return;
         } catch (IOException ioException) {
+            System.out.println("There was problem writing to your file");
             ioException.printStackTrace();
+            return;
         } catch (Exception e) {
+            System.out.println("There was problem");
             e.printStackTrace();
+            return;
         }
+        System.out.printf("Data were written to the \"%s\"%n",
+                path.replaceAll("^.+/", ""));
     }
 
     /**
@@ -38,13 +46,11 @@ public class LabFive {
      * and data to write
      */
     public static void main(String[] args) {
-        if(args.length != 2) {
+        if (args.length != 2) {
             System.out.println("Please enter two arguments on the command line, a file name and a message");
         } else {
             LabFive output = new LabFive();
             output.run(args[0], args[1]);
-            System.out.printf("Data were written to the \"%s\"%n",
-                    args[0].replaceAll("^.+/", ""));
         }
     }
 }
