@@ -21,21 +21,29 @@ public class LabSix {
     public void run(String fileToRead, String fileToWrite)  {
         try (
                 BufferedReader bufferedReader = new BufferedReader(
-                        new InputStreamReader(new FileInputStream(fileToRead)));
-                BufferedWriter bufferedWriter = new BufferedWriter(
-                        new OutputStreamWriter(new FileOutputStream(fileToWrite, true)))
+                        new FileReader(fileToRead));
+                PrintWriter printWriter = new PrintWriter(
+                        new BufferedWriter(new FileWriter(fileToWrite)));
         ) {
             while(bufferedReader.ready()){
-                bufferedWriter.write(bufferedReader.readLine());
-                bufferedWriter.write(System.lineSeparator());
+                printWriter.println(bufferedReader.readLine());
             }
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file was not found");
             fileNotFoundException.printStackTrace();
+            return;
         } catch (IOException ioException) {
+            System.out.println("There was problem input/output error");
             ioException.printStackTrace();
+            return;
         } catch (Exception e) {
+            System.out.println("There was problem");
             e.printStackTrace();
+            return;
         }
+        System.out.printf("Data from \"%s\" were written to the \"%s\"%n",
+                fileToRead.replaceAll("^.+/", ""),
+                fileToWrite.replaceAll("^.+/", ""));
     }
 
     /**
@@ -46,14 +54,11 @@ public class LabSix {
      * and a path file to write
      */
     public static void main(String[] args) {
-        if(args.length != 2) {
+        if (args.length != 2) {
             System.out.println("Please enter two arguments on the command line,"
                     + "an input file name and an output file name");
         } else {
             new LabSix().run(args[0], args[1]);
-            System.out.printf("Data from \"%s\" were written to the \"%s\"%n",
-                    args[0].replaceAll("^.+/", ""),
-                    args[1].replaceAll("^.+/", ""));
         }
     }
 }

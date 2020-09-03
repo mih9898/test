@@ -19,7 +19,7 @@ public class LabEight {
      * a path file to write
      */
     public static void main(String[] args) {
-        if(args.length != 1) {
+        if (args.length != 1) {
             System.out.println("Please enter one argument on"
                     + " the command line, an output file name");
         } else {
@@ -50,17 +50,23 @@ public class LabEight {
      * that indicates the path for file to write
      */
     public void writeSetToOutputFile (String outputFilePath) {
-        try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(
+        try (PrintWriter printWriter = new PrintWriter(new BufferedWriter(
                 new FileWriter(outputFilePath,true)))) {
             for(String word : uniqueWords) {
                 printWriter.println(word);
             }
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file was not found");
             fileNotFoundException.printStackTrace();
+            return;
         } catch (IOException ioException) {
+            System.out.println("There was problem writing to the file");
             ioException.printStackTrace();
+            return;
         } catch (Exception e) {
+            System.out.println("There was problem");
             e.printStackTrace();
+            return;
         }
         System.out.printf("Set's data were written to the \"%s\"%n", outputFilePath
                 .replaceAll("^.+/", ""));

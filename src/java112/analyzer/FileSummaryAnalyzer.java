@@ -3,6 +3,7 @@ package java112.analyzer;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * This class analyzes tokens from
@@ -35,7 +36,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     public void processToken(String token) {
         String[] textInput = token.split("\\W");
         for(String word : textInput) {
-            if(!word.isEmpty()) {
+            if (!word.isEmpty()) {
                 totalTokensCount++;
             }
         }
@@ -98,12 +99,15 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
-            printWriter.write(createReport(inputFilePath));
+            printWriter.println(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file/directory was not found for the summary file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
+            System.out.println("There was problem writing to the summary file");
             ioException.printStackTrace();
         } catch (Exception e) {
+            System.out.println("There was problem with summary file");
             e.printStackTrace();
         }
     }

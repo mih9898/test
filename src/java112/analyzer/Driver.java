@@ -15,7 +15,7 @@ public class Driver {
      *
      * @param args the input arguments
      */
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         FileAnalysis output = new FileAnalysis();
         output.analyze(args);
     }
