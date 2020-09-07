@@ -1,7 +1,9 @@
 package java112.labs2;
 
-import java.io.*;
-import java.util.*;
+import java112.utilities.PropertiesLoader;
+
+import java.io.IOException;
+import java.util.Properties;
 
 /**
  * This class reads
@@ -10,7 +12,7 @@ import java.util.*;
  *
  * @author mturchanov
  */
-public class LabThree {
+public class LabSix implements PropertiesLoader {
     private Properties properties;
 
     /**
@@ -20,7 +22,7 @@ public class LabThree {
      */
     public static void main(String[] args) {
         if (args.length == 1) {
-            LabThree output = new LabThree();
+            LabSix output = new LabSix();
             output.run(args[0]);
         } else {
             System.out.println("Please enter one argument on the command line");
@@ -30,7 +32,7 @@ public class LabThree {
 
     /**
      * Initializes {@link #properties} with
-     * {@link java.lang.System} properties.
+     * {@link System} properties.
      * Then loads them to {@link #properties} and
      * outputs them to the terminal window
      *
@@ -38,30 +40,11 @@ public class LabThree {
      */
     public void run(String propertiesFilePath) {
         properties = System.getProperties();
-        loadProperties(propertiesFilePath);
+        properties = loadProperties(propertiesFilePath);
 
         for (Object key : properties.keySet()) {
             System.out.printf("%s=%s%n", key,
                     properties.getProperty((String) key));
-        }
-    }
-
-    /**
-     * Loads the read properties
-     * to the {@link #properties}
-     *
-     * @param propertiesFilePath properties file path
-     */
-    public void loadProperties(String propertiesFilePath)  {
-        properties = new Properties();
-        try {
-            properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
-        } catch(IOException|NullPointerException loadError) {
-            System.out.println("Can't load the properties file");
-            loadError.printStackTrace();
-        } catch(Exception e) {
-            System.out.println("Problem: " + e);
-            e.printStackTrace();
         }
     }
 }
