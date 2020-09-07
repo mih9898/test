@@ -32,7 +32,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
 
     /**
      * Processes text file
-     * and count a number
+     * and counts a number
      * of unique words
      *
      * @param token the token
