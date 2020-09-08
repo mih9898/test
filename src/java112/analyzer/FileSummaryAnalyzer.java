@@ -3,7 +3,6 @@ package java112.analyzer;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * This class analyzes tokens from
@@ -34,12 +33,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      */
     @Override
     public void processToken(String token) {
-        String[] textInput = token.split("\\W");
-        for(String word : textInput) {
-            if (!word.isEmpty()) {
-                totalTokensCount++;
-            }
-        }
+        totalTokensCount++;
     }
 
     /**
@@ -66,6 +60,9 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         SimpleDateFormat format = new SimpleDateFormat(
                 "E MMM M HH:mm:ss z yyyy");
         return format.format(lastModified);
+    }
+    public String getFileAbsolutePath(String file) {
+        return new File(file).getAbsolutePath();
     }
 
     /**
@@ -121,12 +118,12 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     public String createReport(String inputFilePath) {
         String summaryTemplate = "%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n"
                 + "%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n"
-                + "%-20s%-11s%n%-20s%-11s%n";
+                + "%-20s%-11s%n%-20s%-11s";
 
-        return String.format(summaryTemplate, "Application", "Analyzer",
+        return String.format(summaryTemplate, "Application", "Text file analyzer",
                 "Author", "Mike Turchanov",
                 "Author email", "mturchanov@madisoncolege.edu",
-                "File", inputFilePath,
+                "File", getFileAbsolutePath(inputFilePath),
                 "Date of analysis", getCurrentTime(),
                 "Last modified", getsFileLastModifiedTime(inputFilePath),
                 "File Size", getFileSize(inputFilePath),

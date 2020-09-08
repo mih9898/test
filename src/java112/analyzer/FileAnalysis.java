@@ -10,11 +10,12 @@ import java.io.*;
 public class FileAnalysis {
     public static final int VALID_ARG_NUM = 1;
     public static final String OUTPUT_SUMMARY_PATH =
-            "/home/student/GitHubRepos/projects/output/summary.txt";
+            "output/summary.txt";
     public static final String OUTPUT_DISTINCT_TOKENS_PATH =
-            "/home/student/GitHubRepos/projects/output/distinct_tokens.txt";
+            "output/distinct_tokens.txt";
     private DistinctTokensAnalyzer distinctAnalyzer;
     private FileSummaryAnalyzer summaryAnalyzer;
+
 
     /**
      * Analyzes a file.
@@ -23,14 +24,11 @@ public class FileAnalysis {
      * a path to an input file
      */
     public void analyze(String[] arguments) {
-        if (arguments.length != VALID_ARG_NUM) {
-            outputErrorMessage();
-        } else {
-            initializeAnalyzers();
-            processAnalyzers(arguments[0]);
-            writeOutputFiles(arguments[0]);
-            System.out.println("The app finished its work");
-        }
+        checkArguments(arguments);
+        initializeAnalyzers();
+        processAnalyzers(arguments[0]);
+        writeOutputFiles(arguments[0]);
+        System.out.println("The app finished its work");
     }
 
     /**
@@ -39,8 +37,13 @@ public class FileAnalysis {
      * @param fileToRead the file to read
      */
     public void processAnalyzers(String fileToRead){
-        distinctAnalyzer.processToken(getFileInput(fileToRead));
-        summaryAnalyzer.processToken(getFileInput(fileToRead));
+        String[] words = getFileInput(fileToRead).split("\\W");
+        for(String word : words){
+            if (!word.isEmpty()) {
+                distinctAnalyzer.processToken(word);
+                summaryAnalyzer.processToken(word);
+            }
+        }
     }
 
     /**
@@ -62,10 +65,15 @@ public class FileAnalysis {
     }
 
     /**
-     * Outputs error message.
+     * Checks whether it
+     * is one argument passed
+     *
+     * @param args passed command line arguments
      */
-    public void outputErrorMessage() {
-        System.out.println("Please enter the right input to process");
+    public void checkArguments(String[] args) {
+        if(args.length != 1){
+            System.out.println("Please enter the right input to process");
+        }
     }
 
     /**

@@ -2,7 +2,7 @@ package java112.analyzer;
 
 /**
  * This program reads a text-file,
- * analyzes its unique tokens,
+ * analyzes its tokens,
  * creates summary-report on it,
  * creates a list with all unique words
  *

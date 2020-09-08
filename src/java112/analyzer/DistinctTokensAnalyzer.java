@@ -39,11 +39,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     @Override
     public void processToken(String token) {
-        for (String word : token.split("\\W")) {
-            if (!word.isEmpty()) {
-                distinctTokens.add(word);
-            }
-        }
+        distinctTokens.add(token);
     }
 
     /**
