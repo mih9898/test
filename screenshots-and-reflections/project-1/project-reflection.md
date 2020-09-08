@@ -6,6 +6,7 @@ some time trying to prove Test-Validotor that I am right.
 Then I reread the objectives and there was "AHA"
 
 #### What additional resources did you use or what help did you receive to complete your work? 
-I used my notes and oracle documentation.
-Some clarification, I have around 2000 lines of java notes that
+I used my notes and oracle documentation for formatting dates(https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
+
+>Some clarification, I have around 2000 lines of java notes that
 I did before 

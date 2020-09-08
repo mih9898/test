@@ -2,7 +2,7 @@ package java112.analyzer;
 
 /**
  * This interface analyzes tokens and
- * generate output file
+ * generates output file
  */
 public interface TokenAnalyzer {
     /**

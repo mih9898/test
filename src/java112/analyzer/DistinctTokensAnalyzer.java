@@ -61,10 +61,12 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
                 printWriter.println(word);
             }
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("The file/directory was not found for the distinct tokens file");
+            System.out.println("The file/directory was not found for the "
+                    + "distinct tokens file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
-            System.out.println("There was problem writing to the distinct tokens file");
+            System.out.println("There was problem writing to the"
+                    + " distinct tokens file");
             ioException.printStackTrace();
         } catch (Exception e) {
             System.out.println("There was problem with a distinct tokens file");

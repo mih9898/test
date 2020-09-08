@@ -52,13 +52,13 @@ public class FileAnalysis {
     }
 
     /**
-     * Writes output files.
+     * Writes output to files.
      *
      * @param fileToRead the file to read
      */
     public void writeOutputFiles(String fileToRead){
-        summaryAnalyzer.generateOutputFile(fileToRead, OUTPUT_SUMMARY_PATH);
         distinctAnalyzer.generateOutputFile(fileToRead, OUTPUT_DISTINCT_TOKENS_PATH);
+        summaryAnalyzer.generateOutputFile(fileToRead, OUTPUT_SUMMARY_PATH);
     }
 
     /**
