@@ -1,6 +1,9 @@
-package java112.analyzer;
+package java112.project2;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * This class analyzes a file
@@ -60,20 +63,19 @@ public class FileAnalysis {
      * @param fileToRead the file to read
      */
     public void writeOutputFiles(String fileToRead){
-        distinctAnalyzer.generateOutputFile(fileToRead, OUTPUT_DISTINCT_TOKENS_PATH);
-        summaryAnalyzer.generateOutputFile(fileToRead, OUTPUT_SUMMARY_PATH);
+        distinctAnalyzer.generateOutputFile(fileToRead);
+        summaryAnalyzer.generateOutputFile(fileToRead);
     }
 
     /**
      * Checks whether it
      * is one argument passed
      *
-     * @param arguments passed command line arguments
+     * @param args passed command line arguments
      */
-    public void checkArguments(String[] arguments) {
-        if(arguments.length != 1){
+    public void checkArguments(String[] args) {
+        if(args.length != 1){
             System.out.println("Please enter the right input to process");
-            System.exit(0);
         }
     }
 
