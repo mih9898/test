@@ -34,8 +34,8 @@ public class TrivialServlet extends HttpServlet {
         out.print("<BODY>");
         out.print("<h1>TrivialServlet Here!</h1>");
         out.print("<a href='../java112/index.jsp'>Click to redirect on a 'index.jsp'</a><br/>");
-        out.print("<img src='https://dollysdreamings.typepad.com/.a/6a00d8341c3afb53ef01b8d129906f970c-450wi'" +
-                " alt='tired cat'");
+        out.print("<img src='images/cat.jpg'" +
+                " alt='cat'");
         System.out.println("Is this logging?");
         log("Is this logging?");
         out.print("</BODY>");

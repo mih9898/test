@@ -6,10 +6,20 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
+/**
+ *<!--
+ * TODO 1. Build and deploy your servlet. Check the log files. Which log() statements, if any, executed?
+ *      There is no init logs if tomcat is launched
+ *      but servlet is not accessed/displayed. Just system messages
+ *      Now, access the servlet in the browser. - init + doGet
+ *      destroy log when server goes down or intentionally call the method
+ * TODO 2. Now, access the servlet in the browser. Check the log files.
+ *      Logs of init + doGet appeared
+ * TODO 3. Override destroy method and add a log file. When does this log appear?
+ *      Destroy log appears when server goes down or if intentionally calling the method
+ * -->
+ */
 
-//Build and deploy your servlet. Do NOT access the servlet in the browser yet! - no logs. just system messages
-//Now, access the servlet in the browser. - init + doGet
-//destroy log when server goes down or intentionally call the method
 
 
 @WebServlet(
@@ -40,7 +50,16 @@ public class LabFive extends HttpServlet {
         setFirstAccessed();
     }
 
-
+    /**
+     * Shows time when a servet
+     * was initialized and how many
+     * times servlet was accessed
+     *
+     * @param req HTTP request
+     * @param resp HTTP response
+     * @throws ServletException servlet exception
+     * @throws IOException IO Exception
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
@@ -63,6 +82,10 @@ public class LabFive extends HttpServlet {
 //        destroy();
     }
 
+    /**
+     *  Logs that servlet(s)
+     *  finished his work
+     */
     @Override
     public void destroy() {
         log("destroy() method executes");

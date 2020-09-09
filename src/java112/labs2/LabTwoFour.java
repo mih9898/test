@@ -8,6 +8,8 @@ import java.util.*;
  * This class initializes,
  * checks and compares values
  * for {@link #map#anotherMap}
+ *
+ * @author mturchanov
  */
 public class LabTwoFour {
     private Map<String, Integer> map;
