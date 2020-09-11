@@ -1,4 +1,4 @@
-package java112.project2;
+package java112.project1;
 
 /**
  * This program reads a text-file,

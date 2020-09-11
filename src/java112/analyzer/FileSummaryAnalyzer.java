@@ -3,6 +3,7 @@ package java112.analyzer;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 /**
  * This class analyzes tokens from
@@ -14,6 +15,15 @@ import java.util.Date;
  */
 public class FileSummaryAnalyzer implements TokenAnalyzer {
     private int totalTokensCount;
+    private Properties properties;
+
+    public FileSummaryAnalyzer(Properties properties) {
+        this();
+        this.properties = properties;
+    }
+
+    public FileSummaryAnalyzer() {
+    }
 
     /**
      * Gets total tokens count.
@@ -25,8 +35,8 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     }
 
     /**
-     * Processes text and sets a number of 
-     * unique words for 
+     * Processes text and sets a number of
+     * unique words for
      * {@link #totalTokensCount}
      *
      * @param token the token
@@ -61,6 +71,7 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
                 "E MMM M HH:mm:ss z yyyy");
         return format.format(lastModified);
     }
+
     public String getFileAbsolutePath(String file) {
         return new File(file).getAbsolutePath();
     }
@@ -88,23 +99,26 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
     /**
      * Generates file with a summary
      *
-     * @param inputFilePath  the input file path
-     * @param outputFilePath the output file path
+     * @param inputFilePath the input file path
      */
     @Override
-    public void generateOutputFile(String inputFilePath, String outputFilePath) {
+    public void generateOutputFile(String inputFilePath) {
+        String summaryOutputPath = properties.getProperty("output.directory")
+                + properties.getProperty("output.file.summary");
         try (PrintWriter printWriter = new PrintWriter(
-                new BufferedWriter(new FileWriter(outputFilePath)))
+                new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
             printWriter.println(createReport(inputFilePath));
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("The file/directory was not found for the summary file");
+            System.out.println("The file/directory was not found for the "
+                    + "distinct tokens file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
-            System.out.println("There was problem writing to the summary file");
+            System.out.println("There was problem writing to the"
+                    + " distinct tokens file");
             ioException.printStackTrace();
         } catch (Exception e) {
-            System.out.println("There was problem with summary file");
+            System.out.println("There was problem with a distinct tokens file");
             e.printStackTrace();
         }
     }

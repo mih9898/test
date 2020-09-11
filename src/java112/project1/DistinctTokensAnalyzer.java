@@ -1,7 +1,6 @@
-package java112.analyzer;
+package java112.project1;
 
 import java.io.*;
-import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -13,7 +12,6 @@ import java.util.TreeSet;
  */
 public class DistinctTokensAnalyzer implements TokenAnalyzer {
     private Set<String> distinctTokens;
-    private Properties properties;
 
     /**
      * This constructor initializes 
@@ -21,11 +19,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      */
     public DistinctTokensAnalyzer() {
         distinctTokens = new TreeSet<>();
-    }
-
-    public DistinctTokensAnalyzer(Properties properties) {
-        this();
-        this.properties = properties;
     }
 
     /**
@@ -53,13 +46,12 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
      * Generates file with unique words
      *
      * @param inputFilePath  the input file path
+     * @param outputFilePath the output file path
      */
     @Override
-    public void generateOutputFile(String inputFilePath) {
-        String districtOutputPath = properties.getProperty("output.directory")
-                + properties.getProperty("output.file.distinct");
+    public void generateOutputFile(String inputFilePath, String outputFilePath) {
         try (PrintWriter printWriter = new PrintWriter(
-                new BufferedWriter(new FileWriter(districtOutputPath)))
+                new BufferedWriter(new FileWriter(outputFilePath)))
         ) {
             for(String word : distinctTokens) {
                 printWriter.println(word);

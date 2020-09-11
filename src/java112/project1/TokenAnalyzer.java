@@ -1,4 +1,4 @@
-package java112.project2;
+package java112.project1;
 
 /**
  * This interface analyzes tokens and
@@ -16,6 +16,7 @@ public interface TokenAnalyzer {
      * Generates output file.
      *
      * @param inputFilePath  the input file path
+     * @param outputFilePath the output file path
      */
-    void generateOutputFile(String inputFilePath);
+    void generateOutputFile(String inputFilePath, String outputFilePath);
 }

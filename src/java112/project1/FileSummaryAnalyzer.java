@@ -1,4 +1,4 @@
-package java112.project2;
+package java112.project1;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -89,10 +89,24 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
      * Generates file with a summary
      *
      * @param inputFilePath  the input file path
+     * @param outputFilePath the output file path
      */
     @Override
-    public void generateOutputFile(String inputFilePath) {
-
+    public void generateOutputFile(String inputFilePath, String outputFilePath) {
+        try (PrintWriter printWriter = new PrintWriter(
+                new BufferedWriter(new FileWriter(outputFilePath)))
+        ) {
+            printWriter.println(createReport(inputFilePath));
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.out.println("The file/directory was not found for the summary file");
+            fileNotFoundException.printStackTrace();
+        } catch (IOException ioException) {
+            System.out.println("There was problem writing to the summary file");
+            ioException.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("There was problem with summary file");
+            e.printStackTrace();
+        }
     }
 
     /**

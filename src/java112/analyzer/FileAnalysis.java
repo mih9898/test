@@ -1,20 +1,23 @@
 package java112.analyzer;
 
-import java.io.*;
+import java112.utilities.PropertiesLoader;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * This class analyzes a file
  *
  * @author mturchanov
  */
-public class FileAnalysis {
-    public static final int VALID_ARG_NUM = 1;
-    public static final String OUTPUT_SUMMARY_PATH =
-            "output/summary.txt";
-    public static final String OUTPUT_DISTINCT_TOKENS_PATH =
-            "output/distinct_tokens.txt";
-    private DistinctTokensAnalyzer distinctAnalyzer;
-    private FileSummaryAnalyzer summaryAnalyzer;
+public class FileAnalysis implements PropertiesLoader {
+    public static final int VALID_ARG_NUM = 2;
+    private List<TokenAnalyzer> analyzers;
 
 
     /**
@@ -25,7 +28,7 @@ public class FileAnalysis {
      */
     public void analyze(String[] arguments) {
         checkArguments(arguments);
-        initializeAnalyzers();
+        initializeAnalyzers(loadProperties(arguments[1]));
         processAnalyzers(arguments[0]);
         writeOutputFiles(arguments[0]);
         System.out.println("The app finished its work");
@@ -37,21 +40,51 @@ public class FileAnalysis {
      * @param fileToRead the file to read
      */
     public void processAnalyzers(String fileToRead){
-        String[] words = getFileInput(fileToRead).split("\\W");
-        for(String word : words){
+        String words = getFileInput(fileToRead);
+        TokenAnalyzer lexicalAnalyzer = analyzers.get(analyzers.size() - 1);
+        String wordsCopy = words;
+        for(String word : words.split("\\W")){
             if (!word.isEmpty()) {
-                distinctAnalyzer.processToken(word);
-                summaryAnalyzer.processToken(word);
+                passTokensToAnalyzers(word);
             }
         }
+
+        for(String word : words.split("(?!')\\W")) {
+            if (!word.isEmpty() && !isNumber(word)) {
+                lexicalAnalyzer.processToken(word);
+            }
+        }
+    }
+
+
+
+    /**
+     *
+     * @param word
+     */
+    public void passTokensToAnalyzers(String word) {
+        for (TokenAnalyzer analyzer : analyzers) {
+            if(!(analyzer instanceof LexicalDensityAnalyzer)){
+                analyzer.processToken(word);
+            }
+        }
+    }
+
+    public static boolean isNumber(String str) {
+        return str.matches("-?\\d+")
+                || str.matches("-?\\d+\\.\\d+");
     }
 
     /**
      * Initializes analyzers.
      */
-    public void initializeAnalyzers() {
-        this.distinctAnalyzer = new DistinctTokensAnalyzer();
-        this.summaryAnalyzer = new FileSummaryAnalyzer();
+    public void initializeAnalyzers(Properties properties) {
+        analyzers = new ArrayList<>();
+        analyzers.add(new FileSummaryAnalyzer(properties));
+        analyzers.add(new DistinctTokensAnalyzer(properties));
+        analyzers.add(new LargestTokensAnalyzer(properties));
+        analyzers.add(new DistinctTokenCountsAnalyzer(properties));
+        analyzers.add(new LexicalDensityAnalyzer(properties));
     }
 
     /**
@@ -60,20 +93,21 @@ public class FileAnalysis {
      * @param fileToRead the file to read
      */
     public void writeOutputFiles(String fileToRead){
-        distinctAnalyzer.generateOutputFile(fileToRead, OUTPUT_DISTINCT_TOKENS_PATH);
-        summaryAnalyzer.generateOutputFile(fileToRead, OUTPUT_SUMMARY_PATH);
+        for(TokenAnalyzer analyzer : analyzers) {
+            analyzer.generateOutputFile(fileToRead);
+        }
     }
 
     /**
      * Checks whether it
      * is one argument passed
      *
-     * @param arguments passed command line arguments
+     * @param args passed command line arguments
      */
-    public void checkArguments(String[] arguments) {
-        if(arguments.length != 1){
+    public void checkArguments(String[] args) {
+        if(args.length != VALID_ARG_NUM){
+            System.out.println(args.length);
             System.out.println("Please enter the right input to process");
-            System.exit(0);
         }
     }
 
