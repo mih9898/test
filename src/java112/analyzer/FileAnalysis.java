@@ -42,18 +42,68 @@ public class FileAnalysis implements PropertiesLoader {
     public void processAnalyzers(String fileToRead){
         String words = getFileInput(fileToRead);
         TokenAnalyzer lexicalAnalyzer = analyzers.get(analyzers.size() - 1);
-        String wordsCopy = words;
+        String wordsCopy = words.replaceAll("([,\"]([—-]?-\\w+))|((?<=—-)\\w+)", " bug")
+                .replaceAll("—"," ");
+//        String wordsCopy = words.replaceAll("([,\"]([—-]?-\\w+))|((?<=—-)?\\r\\n\\w+|\")", " bug")
+//                .replaceAll("—"," ");
+
+
+//        String wordsCopy = words;
         for(String word : words.split("\\W")){
             if (!word.isEmpty()) {
-                passTokensToAnalyzers(word);
+//                passTokensToAnalyzers(word);
+            }
+        }
+        String[] tokens = wordsCopy.split("(?!'|-|’|ï)\\W|_");
+        for(int i = 0; i < tokens.length; i++){
+            String word = tokens[i];
+            if(word.contains("-") || word.contains("—")){
+//                System.out.println(word);
+
+
+//                if(word.matches())
+                word = word.replaceAll("-","");
+//                        .replaceAll("—"," ");
+            }
+
+            if(word.contains("ï")){
+                word = word.replaceAll("ï","i");
+            }
+            if (!word.isEmpty()) {
+                if(word.contains("’") ) {
+                    word = word.replaceAll("’","'");
+                }
+//                    System.out.println("123");
+//                    word = word.replaceAll("-", "").replaceAll("—", "");
+//                }
+                lexicalAnalyzer.processToken(word.trim());
             }
         }
 
-        for(String word : words.split("(?!')\\W")) {
-            if (!word.isEmpty() && !isNumber(word)) {
-                lexicalAnalyzer.processToken(word);
-            }
-        }
+
+//        for(String word : wordsCopy.split("(?!'|-|’|ï|—)\\W|_")) {
+////
+//            if(word.contains("-") || word.contains("—")){
+//                System.out.println(word);
+////                if(word.matches())
+//                word = word.replaceAll("-","")
+//                        .replaceAll("—","");
+////            if(functionWords.contains(token.replaceAll("-",""))) lexicalWordsCounter++;
+//            }
+//
+//            if(word.contains("ï")){
+//                word = word.replaceAll("ï","i");
+//            }
+//            if (!word.isEmpty()) {
+//                if(word.contains("’") ) {
+//                    word = word.replaceAll("’","'");
+//                }
+////                    System.out.println("123");
+////                    word = word.replaceAll("-", "").replaceAll("—", "");
+////                }
+//                lexicalAnalyzer.processToken(word);
+//            }
+//        }
     }
 
 
@@ -70,10 +120,7 @@ public class FileAnalysis implements PropertiesLoader {
         }
     }
 
-    public static boolean isNumber(String str) {
-        return str.matches("-?\\d+")
-                || str.matches("-?\\d+\\.\\d+");
-    }
+
 
     /**
      * Initializes analyzers.

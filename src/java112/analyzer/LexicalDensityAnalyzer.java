@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class LexicalDensityAnalyzer implements TokenAnalyzer {
-        private Set<String> functionWords;
+        public static Set<String> functionWords;
         private Properties properties;
         private int totalTokensCount;
         private int lexicalWordsCounter;
@@ -21,7 +21,7 @@ public class LexicalDensityAnalyzer implements TokenAnalyzer {
 
     private void loadFunctionWords() {
         try (BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("nonlexical2.txt"))
+                new FileReader("nonlexical_big_file.txt"))
         ) {
             while (bufferedReader.ready()){
                functionWords.add(bufferedReader.readLine().trim());
@@ -42,21 +42,33 @@ public class LexicalDensityAnalyzer implements TokenAnalyzer {
     @Override
     public void processToken(String token) {
 //        System.out.println(token);
-        if(token.contains("-")){
-            if(functionWords.contains(token.replaceAll("-",""))) lexicalWordsCounter++;
+        if(token.equals("'") || token.isEmpty()){
+            return;
         }
-//            System.out.println("go on");
+        token = token.replaceAll("-", "")
+                .replaceAll("’","'");
+//        System.out.println(token);
 
-        token = token.replaceAll("-", "").replaceAll("'","’");
-
-        if(!functionWords.contains(token.toLowerCase()) && !token.isEmpty()) {
+        if(!functionWords.contains(token.toLowerCase())
+                && !token.isEmpty()
+                && !isNumber(token)) {
             lexicalWordsCounter++;
+
+
 //            System.out.println(token);
         }
         totalTokensCount++;
     }
 
-
+    public boolean isNumber(String str) {
+        if(str.matches("0+")){
+            return false;
+        } else if (str.matches("-?\\d+")
+                || str.matches("\\d+\\w+")){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void generateOutputFile(String inputFilePath) {
