@@ -38,8 +38,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
     }
 
     /**
-     * Processes text file
-     * and counts a number
+     * Counts a number
      * of unique words
      *
      * @param token the token
@@ -61,6 +60,7 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(districtOutputPath)))
         ) {
+            printWriter.println("Distinct Token Summary\n");
             for(String word : distinctTokens) {
                 printWriter.println(word);
             }

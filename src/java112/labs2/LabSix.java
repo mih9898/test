@@ -39,12 +39,11 @@ public class LabSix implements PropertiesLoader {
      * @param propertiesFilePath Properties file path
      */
     public void run(String propertiesFilePath) {
-        properties = System.getProperties();
         properties = loadProperties(propertiesFilePath);
 
-        for (Object key : properties.keySet()) {
+        for (String key : properties.stringPropertyNames()) {
             System.out.printf("%s=%s%n", key,
-                    properties.getProperty((String) key));
+                    properties.getProperty(key));
         }
     }
 }

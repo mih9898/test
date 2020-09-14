@@ -5,15 +5,20 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
-/**
- *  This is part of a lab and is the first servlet for the course.
- *
- *@author    eknapp
- */
+
 @WebServlet(
         name = "trivialServlet",
         urlPatterns = { "/trivial", "/simple" }
 )
+
+/**
+ *  This servlet loads
+ *  shows how servlet
+ *  can interact with
+ *  HTML
+ *
+ * @author    eknapp
+ */
 public class TrivialServlet extends HttpServlet {
 
     /**
@@ -33,7 +38,8 @@ public class TrivialServlet extends HttpServlet {
         out.print("<HEAD><TITLE>TrivialServlet Output</TITLE></HEAD>");
         out.print("<BODY>");
         out.print("<h1>TrivialServlet Here!</h1>");
-        out.print("<a href='../java112/index.jsp'>Click to redirect on a 'index.jsp'</a><br/>");
+        out.print("<a href='../java112/index.jsp'>Click to redirect "
+                + "on a 'index.jsp'</a><br/>");
         out.print("<img src='images/cat.jpg'" +
                 " alt='cat'");
         System.out.println("Is this logging?");
@@ -42,5 +48,4 @@ public class TrivialServlet extends HttpServlet {
         out.print("</HTML>");
         out.close();
     }
-
 }

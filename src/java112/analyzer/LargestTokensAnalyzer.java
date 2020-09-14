@@ -5,15 +5,31 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * This class analyzes
+ * a number of   unique tokens that
+ * are greater than or equal to a specified number
+ */
 public class LargestTokensAnalyzer implements TokenAnalyzer {
     private Properties properties;
     private Set<String> largestTokens;
     private int minimumTokenLength;
 
+    /**
+     * Instantiates a new Largest tokens analyzer
+     * and initializes {@link #largestTokens}
+     */
     public LargestTokensAnalyzer() {
         largestTokens = new TreeSet<>();
     }
 
+    /**
+     * Instantiates a new Largest tokens analyzer,
+     * initializes {@link #properties}
+     * and sets {@link #largestTokens}
+     *
+     * @param properties the properties
+     */
     public LargestTokensAnalyzer(Properties properties) {
         this();
         this.properties = properties;
@@ -21,6 +37,13 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
                 (properties.getProperty("largest.words.minimum.length"));
     }
 
+    /**
+     * Counts a number
+     * of unique words
+     * of specific length
+     *
+     * @param token the token
+     */
     @Override
     public void processToken(String token) {
         if(token.length() >= minimumTokenLength) {
@@ -28,6 +51,11 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
         }
     }
 
+    /**
+     * Generates largest tokens summary
+     *
+     * @param inputFilePath  the input file path
+     */
     @Override
     public void generateOutputFile(String inputFilePath) {
         String largestWordsOutputPath = properties.getProperty("output.directory")
@@ -35,6 +63,7 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(largestWordsOutputPath)))
         ) {
+            printWriter.println("Largest tokens Summary\n");
             for(String word : largestTokens) {
                 printWriter.println(word);
             }

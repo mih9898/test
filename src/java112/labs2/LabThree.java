@@ -19,13 +19,25 @@ public class LabThree {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        if (args.length == 1) {
-            LabThree output = new LabThree();
-            output.run(args[0]);
-        } else {
-            System.out.println("Please enter one argument on the command line");
+//        if (args.length == 1) {
+//            LabThree output = new LabThree();
+//            output.run(args[0]);
+//        } else {
+//            System.out.println("Please enter one argument on the command line");
+//        }
+        new LabThree().test();
+    }
+    public void test(){
+        try {
+            properties.load(this.getClass().getResourceAsStream("/project2.properties"));
+        } catch (IOException ioException) {
+            System.out.println("I/O Exception when trying to load properties");
+            ioException.printStackTrace();
         }
-
+        for (String key : properties.stringPropertyNames()) {
+            System.out.printf("%s=%s%n", key,
+                    properties.getProperty(key));
+        }
     }
 
     /**

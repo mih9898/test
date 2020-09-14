@@ -5,29 +5,59 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 
+/**
+ * The type Distinct token counts analyzer
+ * counts the number of unique tokens
+ */
 public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
 
     private Properties properties;
     private Map<String, Integer> distinctTokenCounts;
 
+    /**
+     * Instantiates a new Distinct token counts analyzer.
+     * and initializes {@link #distinctTokenCounts}
+     */
     public DistinctTokenCountsAnalyzer() {
         distinctTokenCounts = new TreeMap<>();
     }
 
+    /**
+     * Instantiates a new Distinct token counts analyzer
+     * and initializes {@link #properties}
+     *
+     * @param properties the properties
+     */
     public DistinctTokenCountsAnalyzer(Properties properties) {
         this();
         this.properties = properties;
     }
 
+    /**
+     * Gets distinct token counts.
+     *
+     * @return the distinct token counts
+     */
     public Map<String, Integer> getDistinctTokenCounts() {
         return distinctTokenCounts;
     }
 
+    /**
+     * Processes token
+     *
+     * @param token the token
+     */
     @Override
     public void processToken(String token) {
-        distinctTokenCounts.put(token, distinctTokenCounts.getOrDefault(token, 0) + 1);
+        distinctTokenCounts.put(token,
+                distinctTokenCounts.getOrDefault(token, 0) + 1);
     }
 
+    /**
+     * Generates distinct token counts summary
+     *
+     * @param inputFilePath  the input file path
+     */
     @Override
     public void generateOutputFile(String inputFilePath) {
         String summaryOutputPath = properties.getProperty("output.directory")
@@ -35,6 +65,9 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
+//            printWriter.println("");
+            printWriter.printf("%-20s%n%n%-20s%-11s%n",
+                    "Distinct Token Counts Summary", "Unique Token", "Counts");
             for (Map.Entry<String, Integer> entry : distinctTokenCounts.entrySet()) {
                 printWriter.printf("%-20s%-11s%n", entry.getKey(), entry.getValue());
             }

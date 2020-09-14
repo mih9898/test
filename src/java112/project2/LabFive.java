@@ -6,26 +6,29 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
+@WebServlet(
+        name = "labFive",
+        urlPatterns = { "/lab-five" }
+)
+
 /**
+ *
  *<!--
+ * Lab question-answers about logging:
  * TODO 1. Build and deploy your servlet. Check the log files. Which log() statements, if any, executed?
- *      There is no init logs if tomcat is launched
- *      but servlet is not accessed/displayed. Just system messages
- *      Now, access the servlet in the browser. - init + doGet
- *      destroy log when server goes down or intentionally call the method
+ *     - There is no init logs if tomcat is launched
+ *       but servlet is not accessed/displayed. Just system messages
+ *       Now, access the servlet in the browser. - init + doGet
+ *       destroy log when server goes down or intentionally call the method
  * TODO 2. Now, access the servlet in the browser. Check the log files.
- *      Logs of init + doGet appeared
+ *       - Logs of init + doGet appeared
  * TODO 3. Override destroy method and add a log file. When does this log appear?
- *      Destroy log appears when server goes down or if intentionally calling the method
+ *       - Destroy log appears when server goes down or if intentionally calling the method
  * -->
  */
 
 
 
-@WebServlet(
-        name = "labFive",
-        urlPatterns = { "/lab-five" }
-)
 
 /**
  * This app shows the life
@@ -73,9 +76,12 @@ public class LabFive extends HttpServlet {
         out.print("<BODY>");
         out.print("<h1>Lab five</h1>");
         out.print("<table>");
-        out.print("<tr><th>Accessed Times</th><td>" + ++accessedNum + "</td></tr>");
-        out.print("<tr><th>Current Time:</th><td>" + getCurrentTime() + "</td></tr>");
-        out.print("<tr><th>First Accessed</th><td> " + getFirstAccessed() + "</td></tr>");
+        out.print("<tr><th>Accessed Times</th><td>"
+                + ++accessedNum + "</td></tr>");
+        out.print("<tr><th>Current Time:</th><td>"
+                + getCurrentTime() + "</td></tr>");
+        out.print("<tr><th>First Accessed</th><td> "
+                + getFirstAccessed() + "</td></tr>");
         out.print("</table>");
         out.print("</BODY>");
         out.print("</HTML>");
@@ -105,7 +111,7 @@ public class LabFive extends HttpServlet {
      * a servlet was firstly accessed.
      */
     public void setFirstAccessed() {
-            firstAccessed = new Date();
+        firstAccessed = new Date();
     }
 
     /**
