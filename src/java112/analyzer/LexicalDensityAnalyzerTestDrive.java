@@ -23,7 +23,7 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
         LexicalDensityAnalyzer testAnalyzer = new LexicalDensityAnalyzer(properties);
         testAnalyzer.loadFunctionWords();
         for (String word : testCaseString.split("\\W")){
-            if(!testAnalyzer.functionWords.contains(word.toLowerCase())
+            if (!testAnalyzer.functionWords.contains(word.toLowerCase())
                     && !word.matches("\\d?([.,]\\d)")
                     && !word.matches("\\w+'[dl]")) {
                 totalLexicalWordsCounter++;
@@ -40,7 +40,6 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
      * @return lexical density original result
      */
     private double testOriginalLexicalDensityAnalyzer(){
-
         LexicalDensityAnalyzer lexicalDensityAnalyzer =
                 new LexicalDensityAnalyzer(properties);
         lexicalDensityAnalyzer.loadFunctionWords();
@@ -51,24 +50,33 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
     }
 
     /**
-     * The entry point of application,
-     *
-     * @param args the input arguments
+     * Launches test for
+     * lexical analyzer
+     * to check whether
+     * it outputs the correct
+     * result
      */
-    public static void main(String[] args) {
-        LexicalDensityAnalyzerTestDrive testDrive =
-                new LexicalDensityAnalyzerTestDrive();
-        double testCaseResult = testDrive.testLexicalDensityAnalyzer();
-        double originalCaseResult = testDrive.testOriginalLexicalDensityAnalyzer();
+    public void launchTest() {
+        double testCaseResult = testLexicalDensityAnalyzer();
+        double originalCaseResult = testOriginalLexicalDensityAnalyzer();
         System.out.printf("Testing lexical result is %.2f%n", testCaseResult);
         System.out.printf("Original lexical result is %.2f%n", originalCaseResult);
 
-        if((Math.abs(testCaseResult - originalCaseResult)) < 5) {
+        if ((Math.abs(testCaseResult - originalCaseResult)) < 5) {
             System.out.println("Lexical Density Analyzer's result "
                     + "is satisfactory (within ~5% range)");
         } else {
             System.out.println("Lexical Density Analyzer's result "
                     + "is not satisfactory (not within ~5% range)");
         }
+    }
+
+    /**
+     * The entry point of application,
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+       new LexicalDensityAnalyzerTestDrive().launchTest();
     }
 }

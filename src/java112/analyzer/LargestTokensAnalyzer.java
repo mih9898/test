@@ -7,8 +7,9 @@ import java.util.TreeSet;
 
 /**
  * This class analyzes
- * a number of   unique tokens that
+ * a number of unique tokens that
  * are greater than or equal to a specified number
+ * of {@link #minimumTokenLength}
  */
 public class LargestTokensAnalyzer implements TokenAnalyzer {
     private Properties properties;

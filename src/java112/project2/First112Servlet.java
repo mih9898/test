@@ -28,9 +28,9 @@ public class First112Servlet extends HttpServlet {
         // set the response type before sending data
         PrintWriter out  = response.getWriter();
         out.print("<HTML>");
-        out.print("<HEAD><TITLE>Project2-info</TITLE></HEAD>");
+        out.print("<HEAD><TITLE>Project2-Student Info</TITLE></HEAD>");
         out.print("<BODY style='text-align:center; margin:0 auto;'>");
-        out.print("<h1>First112Servlet</h1>");
+        out.print("<h1>Student info</h1>");
         out.print("<a href='../java112/index.jsp'>Click to "
                 + "redirect on a homepage</a><br/>");
         out.print("<table style='border:solid black 2px;"

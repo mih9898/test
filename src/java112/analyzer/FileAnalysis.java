@@ -50,7 +50,6 @@ public class FileAnalysis implements PropertiesLoader {
 
     /**
      * Passes tokens to analyzers
-     * that don't need a formatted text
      *
      * @param token A token that is passed to the analyzers
      */
@@ -73,7 +72,7 @@ public class FileAnalysis implements PropertiesLoader {
     }
 
     /**
-     * Writes output to files.
+     * Writes output summaries.
      *
      * @param fileToRead the file to read
      */
@@ -85,7 +84,7 @@ public class FileAnalysis implements PropertiesLoader {
 
     /**
      * Checks whether it
-     * is one argument passed
+     * is valid argument(s) number
      *
      * @param args passed command line arguments
      */

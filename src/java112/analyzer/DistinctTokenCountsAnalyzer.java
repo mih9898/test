@@ -43,7 +43,10 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
     }
 
     /**
-     * Processes token
+     * Processes token,
+     * counting occurrence
+     * of each unique
+     * token
      *
      * @param token the token
      */
@@ -65,7 +68,6 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
-//            printWriter.println("");
             printWriter.printf("%-20s%n%n%-20s%-11s%n",
                     "Distinct Token Counts Summary", "Unique Token", "Counts");
             for (Map.Entry<String, Integer> entry : distinctTokenCounts.entrySet()) {
@@ -80,7 +82,8 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
                     + " distinct counts tokens file");
             ioException.printStackTrace();
         } catch (Exception e) {
-            System.out.println("There was problem with a distinct counts tokens file");
+            System.out.println("There was problem with a "
+                    + "distinct counts tokens file");
             e.printStackTrace();
         }
     }

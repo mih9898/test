@@ -72,6 +72,12 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
         return format.format(lastModified);
     }
 
+    /**
+     * Gets absolute path
+     *
+     * @param file relative file location
+     * @return absolute path
+     */
     public String getFileAbsolutePath(String file) {
         return new File(file).getAbsolutePath();
     }

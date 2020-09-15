@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * The type Lexical density analyzer
+ * Lexical density analyzer
  * that summarizes lexical density
  * of a text.
  */
@@ -20,7 +20,6 @@ public class LexicalDensityAnalyzer implements TokenAnalyzer {
      */
     public LexicalDensityAnalyzer() {
         functionWords = new HashSet<>();
-        loadFunctionWords();
     }
 
     /**
@@ -31,6 +30,7 @@ public class LexicalDensityAnalyzer implements TokenAnalyzer {
     public LexicalDensityAnalyzer(Properties properties) {
         this();
         this.properties = properties;
+        loadFunctionWords();
     }
 
     /**
@@ -41,19 +41,21 @@ public class LexicalDensityAnalyzer implements TokenAnalyzer {
      */
     public void loadFunctionWords() {
         try (BufferedReader bufferedReader = new BufferedReader(
-                new FileReader("nonlexical_big_file.txt"))
+                new FileReader(properties
+                        .getProperty("input.file.nonlexical_words")))
         ) {
             while (bufferedReader.ready()){
                 functionWords.add(bufferedReader.readLine().trim());
             }
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("The input file was not found");
+            System.out.println("The nonlexical words file was not found");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
-            System.out.println("There was problem while reading input file");
+            System.out.println("There was I/O issue with loading"
+                    + "nonlexical words from a properties file");
             ioException.printStackTrace();
         } catch (Exception e) {
-            System.out.println("There was problem with input file");
+            System.out.println("There was problem with loading properties file");
             e.printStackTrace();
         }
     }

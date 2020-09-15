@@ -8,11 +8,10 @@ import java.util.TreeSet;
 /**
  * This program reads a text-file,
  * analyzes its tokens,
- * creates summary-report on it,
- * creates a list with all unique words
+ * creates summary-reports on it
  *
  * @author mturchanov
- * @since 1.0
+ * @versin 2.0
  */
 public class Driver {
     /**
