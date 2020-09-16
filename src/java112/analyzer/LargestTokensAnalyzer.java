@@ -38,6 +38,10 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
                 (properties.getProperty("largest.words.minimum.length"));
     }
 
+    public Set<String> getLargestTokens() {
+        return largestTokens;
+    }
+
     /**
      * Counts a number
      * of unique words
@@ -64,7 +68,7 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(largestWordsOutputPath)))
         ) {
-            printWriter.println("Largest tokens Summary\n");
+//            printWriter.println("Largest tokens Summary\n");
             for(String word : largestTokens) {
                 printWriter.println(word);
             }

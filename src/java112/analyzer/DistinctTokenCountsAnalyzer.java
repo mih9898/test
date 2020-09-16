@@ -68,10 +68,9 @@ public class DistinctTokenCountsAnalyzer implements TokenAnalyzer{
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
-            printWriter.printf("%-20s%n%n%-20s%-11s%n",
-                    "Distinct Token Counts Summary", "Unique Token", "Counts");
             for (Map.Entry<String, Integer> entry : distinctTokenCounts.entrySet()) {
-                printWriter.printf("%-20s%-11s%n", entry.getKey(), entry.getValue());
+//                printWriter.printf("%-20s%-11s%n", entry.getKey(), entry.getValue());
+                printWriter.printf("%s\t%s%n", entry.getKey(), entry.getValue());
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file/directory was not found for the "

@@ -60,7 +60,6 @@ public class DistinctTokensAnalyzer implements TokenAnalyzer {
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(districtOutputPath)))
         ) {
-            printWriter.println("Distinct Token Summary\n");
             for(String word : distinctTokens) {
                 printWriter.println(word);
             }
