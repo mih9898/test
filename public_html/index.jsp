@@ -108,7 +108,7 @@ Released for free under a Creative Commons Attribution 2.5 License
         <div class="content">
             <ul>
                 <li>
-                    Nothing
+                    <a href="http://localhost:8080/java112/myFirstJSP.jsp">Lab 3 - First JSP </a>
                 </li>
 
             </ul>
