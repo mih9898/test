@@ -8,30 +8,9 @@ import java.util.*;
  */
 public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
     private Properties properties = loadProperties("/analyzer.properties");
-    private String testCaseString = "john smith intensely loves "
+    private final static String TEST_CASE_STRING = "john smith intensely loves "
             + "going to the huge cinema everyday";
-
-    /**
-     * Gets lexical density
-     * tested result
-     *
-     * @return lexical density right result
-     */
-    private double testLexicalDensityAnalyzer() {
-        int totalWordsCounter = 0;
-        int totalLexicalWordsCounter = 0;
-        LexicalDensityAnalyzer testAnalyzer = new LexicalDensityAnalyzer(properties);
-        testAnalyzer.loadFunctionWords();
-        for (String word : testCaseString.split("\\W")){
-            if (!testAnalyzer.functionWords.contains(word.toLowerCase())
-                    && !word.matches("\\d?([.,]\\d)")
-                    && !word.matches("\\w+'[dl]")) {
-                totalLexicalWordsCounter++;
-            }
-            totalWordsCounter++;
-        }
-        return (double)totalLexicalWordsCounter * 100 / totalWordsCounter;
-    }
+    private final static int LEXICAL_DENSITY_RESULT = 80;
 
     /**
      * Gets lexical density
@@ -43,7 +22,7 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
         LexicalDensityAnalyzer lexicalDensityAnalyzer =
                 new LexicalDensityAnalyzer(properties);
         lexicalDensityAnalyzer.loadFunctionWords();
-        for(String word : testCaseString.split("\\W")){
+        for(String word : TEST_CASE_STRING.split("\\W")){
             lexicalDensityAnalyzer.processToken(word);
         }
         return lexicalDensityAnalyzer.calculateLexicalDensity();
@@ -57,17 +36,14 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
      * result
      */
     public void launchTest() {
-        double testCaseResult = testLexicalDensityAnalyzer();
         double originalCaseResult = testOriginalLexicalDensityAnalyzer();
-        System.out.printf("Testing lexical result is %.2f%n", testCaseResult);
-        System.out.printf("Original lexical result is %.2f%n", originalCaseResult);
+        String result = "Lexical density result: Expected - %d%%, Actual - %.2f%% - %s%n";
 
-        if ((Math.abs(testCaseResult - originalCaseResult)) < 5) {
-            System.out.println("Lexical Density Analyzer's result "
-                    + "is satisfactory (within ~5% range)");
+
+        if(LEXICAL_DENSITY_RESULT == originalCaseResult) {
+            System.out.printf(result, LEXICAL_DENSITY_RESULT, originalCaseResult, "PASSED");
         } else {
-            System.out.println("Lexical Density Analyzer's result "
-                    + "is not satisfactory (not within ~5% range)");
+            System.out.printf(result, LEXICAL_DENSITY_RESULT, originalCaseResult, "FAILED");
         }
     }
 
@@ -77,6 +53,6 @@ public class LexicalDensityAnalyzerTestDrive implements PropertiesLoader {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-       new LexicalDensityAnalyzerTestDrive().launchTest();
+        new LexicalDensityAnalyzerTestDrive().launchTest();
     }
 }

@@ -1,9 +1,5 @@
 package java112.analyzer;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * This program reads a text-file,
@@ -11,7 +7,7 @@ import java.util.TreeSet;
  * creates summary-reports on it
  *
  * @author mturchanov
- * @versin 2.0
+ * @version 2.0
  */
 public class Driver {
     /**

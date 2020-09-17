@@ -60,7 +60,9 @@ public class FileAnalysis implements PropertiesLoader {
     }
 
     /**
-     * Initializes analyzers.
+     * Initializes analyzers
+     *
+     * @param properties properties
      */
     public void initializeAnalyzers(Properties properties) {
         analyzers = new ArrayList<>();

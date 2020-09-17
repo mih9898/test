@@ -13,7 +13,7 @@ import java.io.PrintWriter;
         urlPatterns = { "/first" }
 )
 
-public class First112Servlet extends HttpServlet {
+public class First112Servlet  extends HttpServlet  {
     /**
      *  Handles HTTP GET requests.
      *
@@ -23,7 +23,7 @@ public class First112Servlet extends HttpServlet {
      *@exception IOException       if there is an IO failure
      */
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html");
         // set the response type before sending data
         PrintWriter out  = response.getWriter();

@@ -38,6 +38,11 @@ public class LargestTokensAnalyzer implements TokenAnalyzer {
                 (properties.getProperty("largest.words.minimum.length"));
     }
 
+    /**
+     * Gets set of {@link #largestTokens}
+     *
+     * @return {@link #largestTokens}
+     */
     public Set<String> getLargestTokens() {
         return largestTokens;
     }

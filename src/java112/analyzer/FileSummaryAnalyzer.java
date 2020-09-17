@@ -140,15 +140,6 @@ public class FileSummaryAnalyzer implements TokenAnalyzer {
                 + "%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n%-20s%-11s%n"
                 + "%-20s%-11s%n%-20s%-11s";
 
-//        return String.format(summaryTemplate, "Application", "Text file analyzer",
-//                "Author", "Mike Turchanov",
-//                "Author email", "mturchanov@madisoncolege.edu",
-//                "File", getFileAbsolutePath(inputFilePath),
-//                "Date of analysis", getCurrentTime(),
-//                "Last modified", getsFileLastModifiedTime(inputFilePath),
-//                "File Size", getFileSize(inputFilePath),
-//                "File URI", getFileURI(inputFilePath),
-//                "Total Tokens", totalTokensCount);
         return String.format(summaryTemplate, "Application", properties.getProperty("application.name"),
                 "Author", properties.getProperty("author"),
                 "Author email", properties.getProperty("author.email.address"),

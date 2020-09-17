@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * This class initializes,
  * checks and compares values
- * for {@link #map#anotherMap}
+ *
  *
  * @author mturchanov
  */
@@ -27,7 +27,7 @@ public class LabTwoFour {
 
     /**
      * Initializes, checks and compares
-     * values for {@link #map#anotherMap},
+     * values {@link #anotherMap}
      */
     public void run(){
         map = new HashMap();
