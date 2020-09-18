@@ -41,7 +41,7 @@
                 <a href="http://localhost:8080/java112/lab33">Lab 3 - Expression Language </a>
             </li>
             <li>
-                <a href="http://localhost:8080/java112/lab33">Lab 4 - MVC Demo </a>
+                <a href="http://localhost:8080/java112/mvc-demo">Lab 4 - MVC Demo </a>
             </li>
             <li>
                 <a href="http://localhost:8080/java112/lab36.jsp">Lab 6 - Servlet Context </a>

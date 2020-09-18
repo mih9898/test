@@ -17,6 +17,13 @@ import java.util.Map;
         urlPatterns = { "/lab33" }
 )
 
+/**
+ * This app shows/practices to use
+ * controller with view as
+ * a part of MVC
+ *
+ * @author mturchanov
+ */
 public class Lab33Servlet  extends HttpServlet  {
     private Map<String, Object> map;
 

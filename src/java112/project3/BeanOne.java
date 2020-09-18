@@ -1,7 +1,8 @@
 package java112.project3;
 
 /**
- * This is a JavaBean to demonstrate using beans with JSP.
+ * This is a JavaBean as part of MVC
+ * demonstrates how MVC pattern works
  *
  * @author eknapp
  */

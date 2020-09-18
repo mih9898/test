@@ -13,6 +13,12 @@ import java.io.PrintWriter;
         urlPatterns = { "/lab32" }
 )
 
+/**
+ * This app shows/practices
+ * to use HttpServletRequest
+ *
+ * @author mturchanov
+ */
 public class Lab32Servlet  extends HttpServlet  {
 
     /**
@@ -30,7 +36,7 @@ public class Lab32Servlet  extends HttpServlet  {
         PrintWriter out  = response.getWriter();
         out.print("<HTML>");
         out.print("<HEAD><TITLE>Unit 3-Lab2</TITLE></HEAD>");
-        out.print("<BODY style='text-align:center; margin:0 auto;'>");
+        out.print("<BODY>");
         out.print("<h1>Lab 3-2 — HTTP Request</h1>");
         out.print("<a href='../java112/index.jsp'>Click to "
                 + "redirect on a homepage</a><br/>");

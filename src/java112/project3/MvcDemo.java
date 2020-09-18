@@ -13,6 +13,15 @@ import javax.servlet.annotation.*;
     name = "mvcDemo", 
     urlPatterns = { "/mvc-demo" }
 )
+
+/**
+ * This app shows/practices to use
+ * MVC pattern.
+ * More precisely, this class
+ * shows how controller works
+ *
+ * @author mturchanov
+ */
 public class MvcDemo extends HttpServlet {
  
     /**
@@ -28,7 +37,7 @@ public class MvcDemo extends HttpServlet {
  
         BeanOne myBean = new BeanOne();
         myBean.setData("I'm special!");
-        myBean.setHeadTitle("MVC Demo - Lab3");
+        myBean.setHeadTitle("MVC Demo - Lab4");
         request.setAttribute("myCoolBean", myBean);
  
         String url = "/beanOneDemo.jsp";
