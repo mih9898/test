@@ -37,6 +37,9 @@
             <li>
                 <a href="http://localhost:8080/java112/lab32">Lab 2 - HttpServletReq </a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/lab33">Lab 3 - Expression Language </a>
+            </li>
 
         </ul>
     </div>
