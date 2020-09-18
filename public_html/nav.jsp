@@ -40,6 +40,9 @@
             <li>
                 <a href="http://localhost:8080/java112/lab33">Lab 3 - Expression Language </a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/lab33">Lab 4 - MVC Demo </a>
+            </li>
 
         </ul>
     </div>
