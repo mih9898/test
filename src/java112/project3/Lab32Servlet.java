@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 )
 
 public class Lab32Servlet  extends HttpServlet  {
+
     /**
      *  Handles HTTP GET requests.
      *

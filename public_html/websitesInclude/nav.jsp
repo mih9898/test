@@ -43,6 +43,9 @@
             <li>
                 <a href="http://localhost:8080/java112/lab33">Lab 4 - MVC Demo </a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/lab36.jsp">Lab 6 - Servlet Context </a>
+            </li>
 
         </ul>
     </div>
