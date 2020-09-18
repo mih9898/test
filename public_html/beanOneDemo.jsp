@@ -14,6 +14,6 @@
      
     <br />
      
-    <a href="/java112/java112">Home</a>
+    <a href="../java112/">Home</a>
   </body>
 </html>
