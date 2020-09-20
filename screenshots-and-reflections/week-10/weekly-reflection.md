@@ -11,5 +11,5 @@ Everything was fine
 #### What additional resources did you use or what help did you receive to complete your work?
 * javadoc
 * my notes
-*  lecture materials
+* lecture materials
 
