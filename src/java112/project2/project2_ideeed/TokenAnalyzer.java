@@ -16,7 +16,6 @@ public interface TokenAnalyzer {
      * Generates output file.
      *
      * @param inputFilePath  the input file path
-     * @param outputFilePath the output file path
      */
-    void generateOutputFile(String inputFilePath, String outputFilePath);
+    void generateOutputFile(String inputFilePath);
 }

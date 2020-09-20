@@ -6,24 +6,24 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 /**
- * The type Distinct token counts analyzer
- * counts the number of unique tokens
+ * Token length analyzer
+ * counts the number/occurrence of tokens' length
  */
 public class TokenLengthsAnalyzer  implements TokenAnalyzer{
 
+    private Map<Integer, Integer> tokenLengths;
     private Properties properties;
-    private Map<String, Integer> distinctTokenCounts;
 
     /**
-     * Instantiates a new Distinct token counts analyzer.
-     * and initializes {@link #distinctTokenCounts}
+     * Instantiates a new token length analyzer.
+     * and initializes {@links #tokenLength}
      */
     public TokenLengthsAnalyzer () {
-        distinctTokenCounts = new TreeMap<>();
+        tokenLengths = new TreeMap<>();
     }
 
     /**
-     * Instantiates a new Distinct token counts analyzer
+     * Instantiates a new token length analyzer
      * and initializes {@link #properties}
      *
      * @param properties the properties
@@ -34,43 +34,71 @@ public class TokenLengthsAnalyzer  implements TokenAnalyzer{
     }
 
     /**
-     * Gets distinct token counts.
+     * Gets token lengths
      *
      * @return the distinct token counts
      */
-    public Map<String, Integer> getDistinctTokenCounts() {
-        return distinctTokenCounts;
-    }
 
+    public Map<Integer, Integer> getTokenLengths() {
+        return tokenLengths;
+    }
     /**
      * Processes token,
      * counting occurrence
-     * of each unique
-     * token
+     * of each token's length
      *
      * @param token the token
      */
     @Override
     public void processToken(String token) {
-        distinctTokenCounts.put(token,
-                distinctTokenCounts.getOrDefault(token, 0) + 1);
+        int tokenLength = token.length();
+        tokenLengths.put(tokenLength,
+                tokenLengths.getOrDefault(tokenLength, 0) + 1);
+
     }
 
     /**
-     * Generates distinct token counts summary
+     * Gets the base, biggest
+     * token length
+     *
+     * @return
+     */
+    public int getTheBase() {
+        int base = 0;
+        for(int value : tokenLengths.values()) {
+            if(value > base) {
+                base = value;
+            }
+        }
+        return base;
+    }
+
+    public int calculateHistogramValue (int tokenLength) {
+        double valueInHistogram = ((double)tokenLength / getTheBase()) * 80;
+        if(valueInHistogram <= 0) valueInHistogram = 1;
+        return (int)valueInHistogram;
+    }
+
+    /**
+     * Generates token length summary
      *
      * @param inputFilePath  the input file path
      */
     @Override
     public void generateOutputFile(String inputFilePath) {
         String summaryOutputPath = properties.getProperty("output.directory")
-                + properties.getProperty("output.file.distinct.counts");
+                + properties.getProperty("output.file.token.lengths");
         try (PrintWriter printWriter = new PrintWriter(
                 new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
-            for (Map.Entry<String, Integer> entry : distinctTokenCounts.entrySet()) {
+            for (Map.Entry<Integer, Integer> entry : tokenLengths.entrySet()) {
 //                printWriter.printf("%-20s%-11s%n", entry.getKey(), entry.getValue());
-                printWriter.printf("%s\t%s%n", entry.getKey(), entry.getValue());
+                printWriter.printf("%d\t%d%n", entry.getKey(), entry.getValue());
+            }
+            printWriter.println("\nHistogram: ");
+            for (Map.Entry<Integer, Integer> entry : tokenLengths.entrySet()) {
+                int valueInHistogram = calculateHistogramValue(entry.getValue());
+                printWriter.printf("%d\t%s%n", entry.getKey(), "*".repeat(valueInHistogram));
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file/directory was not found for the "
