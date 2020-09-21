@@ -1,6 +1,8 @@
 package java112.analyzer;
 
 
+import java.util.Arrays;
+
 /**
  * This program reads a text-file,
  * analyzes its tokens,
