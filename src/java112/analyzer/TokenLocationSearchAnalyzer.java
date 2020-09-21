@@ -9,7 +9,7 @@ import java.util.*;
  * search specified tokens
  */
 public class TokenLocationSearchAnalyzer implements TokenAnalyzer{
-    private final Map<String, List<Integer>> foundLocations;
+    private Map<String, List<Integer>> foundLocations;
     private Properties properties;
     private int currentTokenLocation;
 
@@ -78,16 +78,18 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer{
      */
     public String formatList(List<Integer> locations, int charactersLimit) {
         StringBuilder formattedList = new StringBuilder();
-        for(String s : locations.toString().split("\\s")){
-            int arrayLen = formattedList.toString().length() + s.length();
+        for (String location : locations.toString().split("\\s")){
+            int arrayLen = formattedList.toString().length()
+                    + location.length() + 1;
             if(arrayLen > charactersLimit) {
                 formattedList.append(System.lineSeparator());
-                charactersLimit += charactersLimit;
-            } else {
-                formattedList.append(s).append(" ");
+                charactersLimit = 80 + arrayLen;
             }
+                formattedList.append(location).append(" ");
         }
-        return formattedList.toString().replaceAll("\\s(?=\\n)", "");
+        return formattedList.toString()
+                .replaceAll("\\s(?=\\n)", "")
+                .trim();
     }
 
     /**
@@ -100,27 +102,27 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer{
         String fileName = properties.getProperty("classpath.search.tokens");
         StringBuilder searchTokens = new StringBuilder();
 
-        try( InputStream inputStream = this.getClass()
+        try (InputStream inputStream = this.getClass()
                 .getResourceAsStream(fileName);
              BufferedReader searchTokensReader = new BufferedReader(
                      new InputStreamReader(inputStream))) {
-            while(searchTokensReader.ready()) {
+            while (searchTokensReader.ready()) {
                 String line = searchTokensReader.readLine().trim();
-                if (!line.isEmpty()) {
+                if(!line.isEmpty()) {
                     searchTokens.append(line).append(" ");
                 }
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file/directory was not found for the "
-                    + "distinct counts tokens file");
+                    + "search token properties file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
             System.out.println("There was problem writing to the"
-                    + " distinct counts tokens file");
+                    + " search token properties file");
             ioException.printStackTrace();
         } catch (Exception e) {
             System.out.println("There was problem with a "
-                    + "distinct counts tokens file");
+                    + "search token properties file");
             e.printStackTrace();
         }
         return searchTokens.toString();
@@ -139,21 +141,21 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer{
                 new BufferedWriter(new FileWriter(summaryOutputPath)))
         ) {
             for (Map.Entry<String, List<Integer>> entry : foundLocations.entrySet()) {
-                printWriter.printf("%s = %n%s%n%n",
+                printWriter.printf("%s =%n%s%n%n",
                         entry.getKey(),
                         formatList(entry.getValue(), 80));
             }
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file/directory was not found for the "
-                    + "distinct counts tokens file");
+                    + "token location search file");
             fileNotFoundException.printStackTrace();
         } catch (IOException ioException) {
             System.out.println("There was problem writing to the"
-                    + " distinct counts tokens file");
+                    + " token location search file");
             ioException.printStackTrace();
         } catch (Exception e) {
             System.out.println("There was problem with a "
-                    + "distinct counts tokens file");
+                    + "token location search file");
             e.printStackTrace();
         }
     }

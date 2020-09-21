@@ -94,7 +94,6 @@ public class FileAnalysis implements PropertiesLoader {
      */
     public void checkArguments(String[] args) {
         if(args.length != VALID_ARG_NUM){
-            System.out.println(args.length);
             System.out.println("Please enter the right input to process");
         }
     }

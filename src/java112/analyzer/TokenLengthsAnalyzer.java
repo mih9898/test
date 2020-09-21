@@ -73,7 +73,7 @@ public class TokenLengthsAnalyzer  implements TokenAnalyzer{
         return base;
     }
 
-    public int calculateHistogramValue (int tokenLength) {
+    public int calculateHistogramValue(int tokenLength) {
         double valueInHistogram = ((double)tokenLength / getTheBase()) * 80;
         if(valueInHistogram <= 0) valueInHistogram = 1;
         return (int)valueInHistogram;
