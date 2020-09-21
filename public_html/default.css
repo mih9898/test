@@ -28,6 +28,13 @@ a {
 	color: #4369D1;
 }
 
+table, td, th {
+	border:solid 1px black;
+}
+table td {
+	padding: 1em;
+}
+
 .small {
 	font-variant-caps: all-small-caps;
 }

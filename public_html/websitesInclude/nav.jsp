@@ -50,7 +50,7 @@
                 <a href="http://localhost:8080/java112/request-servlet?queryParameter=test">Project 3 - Request Data </a>
             </li>
             <li>
-                <a href="http://localhost:8080/java112/lab36.jsp">Project 3 - Properties </a>
+                <a href="http://localhost:8080/java112/project3-properties">Project 3 - Properties </a>
             </li>
 
         </ul>
