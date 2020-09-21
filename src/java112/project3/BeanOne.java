@@ -7,7 +7,6 @@ package java112.project3;
  * @author eknapp
  */
 public class BeanOne {
-
     private String data;
     private String headTitle;
 

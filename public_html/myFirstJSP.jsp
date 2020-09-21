@@ -13,7 +13,6 @@
             <p style="font-variant-caps: all-petite-caps;">Current Date:
                 <b><%= new java.util.Date() %></b>
             </p>
-
         </div>
     </div>
 </div>

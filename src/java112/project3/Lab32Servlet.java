@@ -20,7 +20,6 @@ import java.io.PrintWriter;
  * @author mturchanov
  */
 public class Lab32Servlet  extends HttpServlet  {
-
     /**
      *  Handles HTTP GET requests.
      *
