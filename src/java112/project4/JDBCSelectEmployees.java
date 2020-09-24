@@ -1,50 +1,50 @@
 package java112.project4;
-  
+
 import java.io.*;
 import java.sql.*;
-  
+
 /**
  *
  *@author     Eric Knapp
  *
  */
 public class JDBCSelectEmployees {
-  
+
     public void runSample() {
-  
+
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-  
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-  
+
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost/student", "student", "student");
-  
+
             statement = connection.createStatement();
-  
+
             String name = "Smith";
             String queryString = "SELECT emp_id, first_name, last_name"
                     + " FROM employees " + "WHERE last_name like '"
                     + name + "%'";
-  
+
             System.out.println("queryString: " + queryString);
-  
+
             resultSet = statement.executeQuery(queryString);
-  
+
             System.out.println();
-  
+
             while (resultSet.next()) {
                 String employeeId = resultSet.getString("emp_id");
                 String firstName = resultSet.getString("first_name");
                 String lastName = resultSet.getString("last_name");
                 System.out.println(" Row: " + employeeId + " "
-                            + firstName + " " + lastName);
+                        + firstName + " " + lastName);
             }
-  
+
             System.out.println();
-  
+
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
             int columns = resultSetMetaData.getColumnCount();
             String nameOne = resultSetMetaData.getColumnName(1);
@@ -54,9 +54,9 @@ public class JDBCSelectEmployees {
             System.out.println(" Column 1 name : " + nameOne);
             System.out.println(" Column 1 type : " + typeOne);
             System.out.println(" Column 1 label name : " + labelOne);
-  
+
             System.out.println();
-  
+
         } catch (ClassNotFoundException classNotFound) {
             classNotFound.printStackTrace();
         } catch (SQLException sqlException) {
@@ -69,11 +69,11 @@ public class JDBCSelectEmployees {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-  
+
                 if (statement != null) {
                     statement.close();
                 }
-  
+
                 if (connection != null) {
                     connection.close();
                 }
@@ -84,7 +84,7 @@ public class JDBCSelectEmployees {
             }
         }
     }
-  
+
     /**
      *  The main program for the JDBCSelectWhereExample class
      *
@@ -94,10 +94,10 @@ public class JDBCSelectEmployees {
      *
      */
     public static void main(String[] args) {
-  
+
         JDBCSelectEmployees employees = new JDBCSelectEmployees();
-  
+
         employees.runSample();
-  
+
     }
 }
