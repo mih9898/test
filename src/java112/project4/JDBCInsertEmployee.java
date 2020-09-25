@@ -14,7 +14,7 @@ public class JDBCInsertEmployee {
 
     /**
      * Inserts a new employee to DB
-     *
+     *d
      * @param id id
      * @param firstName first name
      * @param lastName last name
