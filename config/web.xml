@@ -37,12 +37,20 @@
     <servlet-name>myFirstJsp</servlet-name>
     <jsp-file>/myFirstJSP.jsp</jsp-file>
   </servlet>
+  <servlet>
+    <servlet-name>jstlLab1</servlet-name>
+    <jsp-file>/jsp/jstl-lab1.jsp</jsp-file>
+  </servlet>
 <!-- ********************************************************************* -->
 <!-- Servlet Mappings **************************************************** -->
 <!-- ********************************************************************* -->
   <servlet-mapping>
     <servlet-name>myFirstJsp</servlet-name>
     <url-pattern>/firstJsp</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>jstlLab1</servlet-name>
+    <url-pattern>/jsp/jstl-lab1.jsp</url-pattern>
   </servlet-mapping>
 
 <!-- ********************************************************************* -->

@@ -13,5 +13,5 @@ Released for free under a Creative Commons Attribution 2.5 License
     </title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="default.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/default.css" rel="stylesheet" type="text/css" />
 </head>

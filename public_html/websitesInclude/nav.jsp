@@ -63,7 +63,10 @@
     <div class="content">
         <ul>
             <li>
-                Nothing
+                <a href="http://localhost:8080/java112/jsp/jstl-lab1.jsp">Lab2 - JSP with JSTL</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/java112/jstl_lab1">Lab2 - JSP with JSTL</a>
             </li>
 
         </ul>
