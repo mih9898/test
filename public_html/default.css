@@ -13,9 +13,15 @@ body {
 }
 
 form {
-	margin: 0;
-	padding: 0;
+	margin: 2em;
+	padding: 2em;
 }
+
+label, input, select {
+	padding: 1em 0;
+	margin: 1em;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
 	/*text-transform: uppercase;*/

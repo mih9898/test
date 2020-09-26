@@ -68,7 +68,9 @@
             <li>
                 <a href="http://localhost:8080/java112/jstl_lab1">Lab2 - JSP with JSTL</a>
             </li>
-
+            <li>
+                <a href="http://localhost:8080/java112/lab41.jsp">Lab3 - HTML Form</a>
+            </li>
         </ul>
     </div>
 </div>
