@@ -1,6 +1,7 @@
 package java112.analyzer;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
@@ -13,6 +14,7 @@ public class TokenLengthsAnalyzer  implements TokenAnalyzer{
 
     private Map<Integer, Integer> tokenLengths;
     private Properties properties;
+    private static final int MAX_HISTOGRAM_LENGTH = 80;
 
     /**
      * Instantiates a new token length analyzer.
@@ -54,27 +56,20 @@ public class TokenLengthsAnalyzer  implements TokenAnalyzer{
         int tokenLength = token.length();
         tokenLengths.put(tokenLength,
                 tokenLengths.getOrDefault(tokenLength, 0) + 1);
-
     }
 
     /**
      * Gets the base, biggest
      * token length
      *
-     * @return
+     * @return the base
      */
     public int getTheBase() {
-        int base = 0;
-        for(int value : tokenLengths.values()) {
-            if(value > base) {
-                base = value;
-            }
-        }
-        return base;
+        return Collections.max(tokenLengths.values());
     }
 
     public int calculateHistogramValue(int tokenLength) {
-        double valueInHistogram = Math.round(((double)tokenLength / getTheBase()) * 80);
+        double valueInHistogram = Math.round(((double)tokenLength / getTheBase()) * MAX_HISTOGRAM_LENGTH);
         if((int)valueInHistogram == 0) {
             valueInHistogram = 1;
         }

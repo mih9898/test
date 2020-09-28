@@ -1,7 +1,6 @@
 package java112.analyzer;
 
 
-import java.util.Arrays;
 
 /**
  * This program reads a text-file,
@@ -9,7 +8,7 @@ import java.util.Arrays;
  * creates summary-reports on it
  *
  * @author mturchanov
- * @version 2.0
+ * @version 3.0
  */
 public class Driver {
     /**
