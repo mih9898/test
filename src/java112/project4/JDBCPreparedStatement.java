@@ -2,7 +2,25 @@ package java112.project4;
 
 import java.sql.*;
 
+/**
+ * This class inserts new
+ * employee to DB
+ * using PreparedStatement
+ *
+ * @author mturchanov
+ */
 public class JDBCPreparedStatement {
+    /**
+     * Inserts a new employee
+     *
+     * @param id id
+     * @param firstName first name
+     * @param lastName last name
+     * @param ssn ssn
+     * @param department department
+     * @param room room number
+     * @param phone phone number
+     */
     public void insertEmployees(String id, String firstName, String lastName,
                                 String ssn, String department, String room, String phone) {
 
@@ -29,6 +47,16 @@ public class JDBCPreparedStatement {
         }
     }
 
+    /**
+     * Inserts a new employee
+     *
+     * @param firstName first name
+     * @param lastName last name
+     * @param ssn ssn
+     * @param department department
+     * @param room room number
+     * @param phone phone number
+     */
     public void insertEmployees(String firstName, String lastName,
                                 String ssn, String department, String room, String phone) {
 

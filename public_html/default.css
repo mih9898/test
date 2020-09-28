@@ -17,9 +17,16 @@ form {
 	padding: 2em;
 }
 
-label, input, select {
-	padding: 1em 0;
-	margin: 1em;
+label {
+	margin: .5em;
+}
+input, select {
+	margin:.3em;
+}
+
+input[type="select"] {
+	margin:0 auto;
+	display:block;
 }
 
 

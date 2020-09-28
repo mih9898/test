@@ -12,9 +12,27 @@ import java.io.PrintWriter;
         name = "Lab41Servlet",
         urlPatterns = { "/Lab41Servlet" }
 )
+
+
+/**
+ * This servlet
+ * processes GET parameters
+ * and displays them
+ *
+ * @author mturchanov
+ */
 public class Lab41Servlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     *  Handles HTTP GET requests.
+     *
+     *@param  request                   the HttpServletRequest object
+     *@param  response                   the HttpServletResponse object
+     *@exception ServletException  if there is a Servlet failure
+     *@exception IOException       if there is an IO failure
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String employeeID = request.getParameter("employeeID");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -22,7 +40,6 @@ public class Lab41Servlet extends HttpServlet {
         String phone = request.getParameter("phone");
         String dept = request.getParameter("dept");
         String room = request.getParameter("room");
-
 
         response.setContentType("text/html");
         PrintWriter out  = response.getWriter();

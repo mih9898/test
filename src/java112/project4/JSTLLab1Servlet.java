@@ -14,9 +14,24 @@ import java.util.List;
         name = "JSTLLab1Servlet",
         urlPatterns = { "/jstl_lab1" }
 )
+
+/**
+ * This class sets
+ * list and forwards to the
+ * jsp fle
+ */
 public class JSTLLab1Servlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+     * Handles HTTP GET requests.
+     *
+     * @param  request                   the HttpServletRequest object
+     * @param  response                   the HttpServletResponse object
+     * @exception ServletException  if there is a Servlet failure
+     * @exception IOException       if there is an IO failure
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         List<String> list = new ArrayList<>();
         list.add("Michal");
         list.add("Krzystof");

@@ -71,6 +71,9 @@
             <li>
                 <a href="http://localhost:8080/java112/lab41.jsp">Lab3 - HTML Form</a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/Project4SessionLab">Lab 4 - Session Counter</a>
+            </li>
         </ul>
     </div>
 </div>
