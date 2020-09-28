@@ -77,15 +77,16 @@ public class TokenLocationSearchAnalyzer implements TokenAnalyzer{
      * @return formatted list
      */
     public String formatList(List<Integer> locations, int charactersLimit) {
+        charactersLimit++;
+        int counter = 0;
         StringBuilder formattedList = new StringBuilder();
         for (String location : locations.toString().split("\\s")){
-            int arrayLen = formattedList.toString().length()
-                    + location.length() + 1;
-            if(arrayLen > charactersLimit) {
+            counter += location.length() + 1;
+            if(counter > charactersLimit) { //reset line
                 formattedList.append(System.lineSeparator());
-                charactersLimit = 80 + arrayLen;
+                counter = location.length() + 1;
             }
-                formattedList.append(location).append(" ");
+            formattedList.append(location).append(" ");
         }
         return formattedList.toString()
                 .replaceAll("\\s(?=\\n)", "")
