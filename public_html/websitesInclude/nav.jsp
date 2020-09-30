@@ -74,6 +74,9 @@
             <li>
                 <a href="http://localhost:8080/java112/Project4SessionLab">Lab 4 - Session Counter</a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/analyzer_input.jsp">Analyzer</a>
+            </li>
         </ul>
     </div>
 </div>
