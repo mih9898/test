@@ -17,6 +17,15 @@ form {
 	padding: 2em;
 }
 
+summary, li {
+	padding: .4em 0;
+}
+
+summary {
+	font-size: 115%;
+	font-weight: 600;
+}
+
 label {
 	margin: .5em;
 }

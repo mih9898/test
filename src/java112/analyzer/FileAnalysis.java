@@ -19,7 +19,6 @@ public class FileAnalysis implements PropertiesLoader {
     public static final int VALID_ARG_NUM = 2;
     private List<TokenAnalyzer> analyzers;
 
-
     /**
      * Analyzes a file.
      *
