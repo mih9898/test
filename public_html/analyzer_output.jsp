@@ -9,38 +9,38 @@
         <h2> Project 4 - Analyzer</h2>
 
         <details>
-        <summary>File Summary</summary>
-        <p>${fileTokensSummary}</p>
+            <summary>File Summary</summary>
+            <p>${fileTokensSummary}</p>
         </details>
 
         <details>
-        <summary>Distinct Tokens Summary</summary>
-        <p>${distinctTokensSummary}</p>
+            <summary>Distinct Tokens Summary</summary>
+            <p>${distinctTokensSummary}</p>
         </details>
 
         <details>
-        <summary>Largest Toekens Summary</summary>
-        <p>${largestTokensSummary}</p>
+            <summary>Largest Toekens Summary</summary>
+            <p>${largestTokensSummary}</p>
         </details>
 
         <details>
-        <summary>Distinct Counts Tokens Summary</summary>
-        <p>${distinctCountsSummary}</p>
+            <summary>Distinct Counts Tokens Summary</summary>
+            <p>${distinctCountsSummary}</p>
         </details>
 
         <details>
-        <summary>Lexical Tokens Summary</summary>
-        <p>${lexicalSummary}</p>
+            <summary>Lexical Tokens Summary</summary>
+            <p>${lexicalSummary}</p>
         </details>
 
         <details>
-        <summary>Tokens Length Summary</summary>
-        <p>${tokensLengthSummary}</p>
+            <summary>Tokens Length Summary</summary>
+            <p>${tokensLengthSummary}</p>
         </details>
 
         <details>
-        <summary>Search Tokens Locations Summary</summary>
-        <p>${searchLocationsSummary}</p>
+            <summary>Search Tokens Locations Summary</summary>
+            <p>${searchLocationsSummary}</p>
         </details>
 
     </div>
