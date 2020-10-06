@@ -57,10 +57,10 @@ public class JDBCInsertEmployee {
                     args[3], args[4], args[5], args[6]);
             System.out.printf("New employee: %s %s was added%n",
                     args[1], args[2]);
+            employees.readLastAddedEntry();
         } else {
             System.out.println("Please enter appropriate input");
         }
-        employees.readLastAddedEntry();
     }
 
     public void readLastAddedEntry() {
