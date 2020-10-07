@@ -1,13 +1,15 @@
 <%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>--%>
 <%--<c:set var="header_title" value="Lab 2 - JSTL" scope="page"/>--%>
 
-<%@include file="websitesInclude/head.jsp" %>
+<%@include file="../websitesInclude/head.jsp" %>
 <body>
-<%@include file="websitesInclude/nav.jsp" %>
+<%@include file="../websitesInclude/nav.jsp" %>
 <div id="content">
     <div id="posts">
         <h2> Lab 3 - Forms</h2>
-        <form action="${pageContext.request.contextPath}/Lab41Servlet">
+        <h3>${project4AddMessage}</h3>
+
+        <form action="${pageContext.request.contextPath}/addEmployeeServlet" method="post">
             <label for="employeeID">Employee ID: </label>
             <input type="text" id="employeeID" name="employeeID"> <br>
 
@@ -38,6 +40,6 @@
 
     </div>
 </div>
-<%@include file="websitesInclude/footer.jsp" %>
+<%@include file="../websitesInclude/footer.jsp" %>
 </body>
 </html>

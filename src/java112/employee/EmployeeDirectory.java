@@ -10,12 +10,22 @@ public class EmployeeDirectory implements PropertiesLoader {
 
     public EmployeeDirectory(Properties properties) {
         //TODO: load properties?
+        properties = loadProperties("/project4.properties");
         this.properties = properties;
     }
 
     private Connection establishConnection() {
-        //TODO: establish con with DB
-        return null;
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/student", "student", "student");
+        } catch (ClassNotFoundException classNotFoundException) {
+            classNotFoundException.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return connection;
     }
 
     public void addRecord(String employeeID, String firstName, String lastName,
@@ -26,9 +36,9 @@ public class EmployeeDirectory implements PropertiesLoader {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String insertString = String.format("INSERT INTO employees "
                             + "VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s');",
-                    Integer.parseInt("2"), firstName, lastName, ssn, department, room, phone
+                    Integer.parseInt(employeeID), firstName, lastName, ssn, department, room, phone
             );
-          statement.executeUpdate(insertString);
+            statement.executeUpdate(insertString);
         } catch (ClassNotFoundException classNotFound) {
             classNotFound.printStackTrace();
         } catch (SQLException sqlException) {
@@ -44,12 +54,48 @@ public class EmployeeDirectory implements PropertiesLoader {
         return null;
     }
 
+
+    private void selectEmployee(Search search) {
+        try(Connection connection = establishConnection();
+            Statement statement = connection.createStatement();) {
+            try(ResultSet resultSet = statement.executeQuery(
+                    String.format("select * from employee where %s=%s;",
+                            search.getSearchType(), search.getSearchTerm()))
+            ){
+                //Retrieving the data
+                if (resultSet.getFetchSize() > 0) {
+                    search.setFound(true);
+                    while(resultSet.next()) {
+                        Employee employee = new Employee();
+                        employee.setEmployeeID(Integer.parseInt(resultSet.getString("emp_id")));
+                        employee.setFirstName(resultSet.getString("first_name"));
+                        employee.setLastName(resultSet.getString("last_name"));
+                        employee.setSsn(resultSet.getString("ssn"));
+                        employee.setDepartment(resultSet.getString("dept"));
+                        employee.setRoom(resultSet.getString("room"));
+                        employee.setPhone(resultSet.getString("phone"));
+                        search.addFoundEmployee(employee);
+                    }
+                } else {
+                    search.setFound(false);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
     private void searchEmployeeByID(Search search) {
         try(Connection connection = establishConnection();
             Statement statement = connection.createStatement();) {
             try(ResultSet resultSet = statement.executeQuery(
                     //TODO:propper query+
-                    "select * from employees where emp_id=" + search.getSearchTerm() + " limit 1");){
+                    "select * from employees where emp_id=" + search.getSearchTerm());){
                 //Retrieving the data
                 if (resultSet.getFetchSize() > 0) {
                     search.setFound(true);

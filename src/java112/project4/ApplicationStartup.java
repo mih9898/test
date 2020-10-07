@@ -1,11 +1,16 @@
 package java112.project4;
 
+import java112.employee.EmployeeDirectory;
+import java112.utilities.PropertiesLoader;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Properties;
 
 @WebServlet(
         name = "applicationStartup",
@@ -15,7 +20,7 @@ import java.io.IOException;
 
 
 
-public class ApplicationStartup extends HttpServlet {
+public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
       protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -24,12 +29,10 @@ public class ApplicationStartup extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-//        TODO: Create a Properties object and load the project4.properties file.
-//        TODO: Place the Properties object into the ServletContext
-//            with an attribute name that is different from
-//            the one used in other projects and labs.
-//            Something like “project4Properties” would work.
-//        TODO: Create an EmployeeDirectory instance with the constructor that has a Properties parameter.
-//        TODO: Place the EmployeeDirectory instance into the ServletContext
+        Properties properties = loadProperties("/project4.properties");
+        EmployeeDirectory employeeDirectory = new EmployeeDirectory(properties);
+        ServletContext context = getServletContext();
+        context.setAttribute("project4Properties", properties);
+        context.setAttribute("employeeDirectory", employeeDirectory);
     }
 }

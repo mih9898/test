@@ -7,7 +7,7 @@ import java.util.List;
 public class Search {
     private String searchType;
     private String searchTerm;
-    private List<ResultSet> results;
+    private List<Employee> results;
     private boolean isFound;
 
     public Search() {}
@@ -28,11 +28,11 @@ public class Search {
         this.searchTerm = searchTerm;
     }
 
-    public List<ResultSet> getResults() {
+    public List<Employee> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<ResultSet> results) {
+    public void setResults(ArrayList<Employee> results) {
         this.results = results;
     }
 
@@ -45,7 +45,6 @@ public class Search {
     }
 
     public void addFoundEmployee(Employee employee) {
-        //TODO: add the employee to the List of found Employee objects
-
+        results.add(employee);
     }
 }
