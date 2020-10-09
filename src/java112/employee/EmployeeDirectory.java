@@ -29,16 +29,21 @@ public class EmployeeDirectory implements PropertiesLoader {
 
     public void addRecord(String employeeID, String firstName, String lastName,
                           String ssn, String department, String room, String phone) {
-        try (Connection connection = establishConnection();
-             Statement statement = connection.createStatement();) {
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost/student", "student", "student");
+             PreparedStatement insertEmployee = connection.prepareStatement(
+                     "INSERT INTO employees "
+                             + "VALUES(?, ?, ?, ?, ?, ?, ?);" );) {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String insertString = String.format("INSERT INTO employees "
-                            + "VALUES(%d, '%s', '%s', '%s', '%s', '%s', '%s');",
-                    Integer.parseInt(employeeID), firstName, lastName, ssn, department, room, phone
-            );
-            statement.executeUpdate(insertString);
-        } catch (ClassNotFoundException classNotFound) {
-            classNotFound.printStackTrace();
+            insertEmployee.setInt(1, Integer.parseInt(employeeID));
+            insertEmployee.setString(2,firstName);
+            insertEmployee.setString(3, lastName);
+            insertEmployee.setString(4, ssn);
+            insertEmployee.setString(5, department);
+            insertEmployee.setString(6, room);
+            insertEmployee.setString(7, phone);
+            insertEmployee.executeUpdate();
+            System.out.printf("Record on %s %s was added%n", firstName, lastName);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } catch (Exception exception) {

@@ -9,7 +9,8 @@
         <h2> Lab 3 - Forms</h2>
         <h3>${project4AddMessage}</h3>
 
-        <form action="${pageContext.request.contextPath}/addEmployeeServlet" method="post">
+        <form action="${pageContext.request.contextPath}/addEmployeeServlet"
+              method="post">
             <label for="employeeID">Employee ID: </label>
             <input type="text" id="employeeID" name="employeeID"> <br>
 
@@ -22,9 +23,6 @@
             <label for="ssn">Social Security Number: </label>
             <input type="text" id="ssn" required name="ssn"> <br>
 
-            <label for="phone">Phone Number: </label>
-            <input type="text" id="phone" required name="phone"> <br>
-
             <label for="dept">Department:</label>
             <select name="dept" id="dept">
                 <option value="IT">IT</option>
@@ -35,11 +33,15 @@
             <label for="room">Room: </label>
             <input type="text" id="room" required name="room"> <br>
 
+            <label for="phone">Phone Number: </label>
+            <input type="text" id="phone" required name="phone"> <br>
+
             <input type="submit" value="Record Employee">
         </form>
-
     </div>
 </div>
+
+<% session.removeAttribute("project4AddMessage");%>
 <%@include file="../websitesInclude/footer.jsp" %>
 </body>
 </html>

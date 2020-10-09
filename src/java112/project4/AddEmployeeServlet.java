@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(
@@ -17,20 +18,24 @@ import java.io.IOException;
 )
 
 public class AddEmployeeServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private EmployeeDirectory employeeDirectory;
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.setAttribute("project4AddMessage", "New employee was added");;
         ServletContext context = getServletContext();
         EmployeeDirectory employeeDirectory = (EmployeeDirectory)context.getAttribute("employeeDirectory");
-        String employeeID = (String)request.getAttribute("employeeID");
-        String firstName = (String)request.getAttribute("firstName");
-        String lastName = (String)request.getAttribute("lastName");
-        String ssn = (String)request.getAttribute("ssn");
-        String dept = (String)request.getAttribute("dept");
-        String room = (String)request.getAttribute("room");
-        String phone = (String)request.getAttribute("phone");
-
+        String employeeID = request.getParameter("employeeID");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String ssn = request.getParameter("ssn");
+        String dept = request.getParameter("dept");
+        String room = request.getParameter("room");
+        String phone = request.getParameter("phone");
+        log("\n" + String.format("Record on %s %s %s %s %s %s %s was added%n",
+                employeeID,firstName, lastName,ssn,dept,room,phone) + "\n");
         employeeDirectory.addRecord(employeeID, firstName, lastName, ssn,
                 dept, room, phone);
-        response.sendRedirect("jsp/add_employee.jsp");
-
+        response.sendRedirect("/java112/addEmployee");
     }
 }

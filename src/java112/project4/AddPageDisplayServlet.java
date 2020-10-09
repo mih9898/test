@@ -19,6 +19,15 @@ public class AddPageDisplayServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+//        if(session.getAttribute("projectAddEmployee") != null) {
+//            response.sendRedirect("/jsp/add_employee.jsp");
+//            return;
+//        } else {
+//            session.setAttribute("projectAddEmployee", "failure");
+//            response.sendRedirect("/jsp/add_employee.jsp");
+//
+//        }
+
         Search search = (Search)session.getAttribute("search");
         if(search.isFound()){
             request.setAttribute("project4AddMessage", "Requested employee(s) ");

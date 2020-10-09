@@ -24,6 +24,7 @@
 
     </div>
 </div>
+<c:remove var = "project4AddMessage"/>
 <%@include file="../websitesInclude/footer.jsp" %>
 </body>
 </html>
