@@ -10,7 +10,13 @@ public class Search {
     private List<Employee> results;
     private boolean isFound;
 
-    public Search() {}
+    public Search(String searchType, String searchTerm) {
+        this.searchType = searchType;
+        this.searchTerm = searchTerm;
+        results = new ArrayList<>();
+    }
+
+    public Search() { results = new ArrayList<>(); }
 
     public String getSearchType() {
         return searchType;

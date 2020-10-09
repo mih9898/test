@@ -77,6 +77,12 @@
             <li>
                 <a href="http://localhost:8080/java112/analyzer_input.jsp">Analyzer</a>
             </li>
+            <li>
+                <a href="http://localhost:8080/java112/jsp/employee_search.jsp">Project4 - Search Employee</a>
+            </li>
+            <li>
+                <a href="http://localhost:8080/java112/jsp/add_employee.jsp">Project4 - Add Employee</a>
+            </li>
         </ul>
     </div>
 </div>

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @WebServlet(
-        name = "applicationStartup",
+        name = "ApplicationStartup",
         urlPatterns = { "/project4-startup" },
         loadOnStartup = 1
 )
@@ -22,7 +22,7 @@ import java.util.Properties;
 
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
-      protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }
@@ -31,6 +31,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
     public void init() throws ServletException {
         Properties properties = loadProperties("/project4.properties");
         EmployeeDirectory employeeDirectory = new EmployeeDirectory(properties);
+//        log("\nemployee object is  \n" + employeeDirectory);
         ServletContext context = getServletContext();
         context.setAttribute("project4Properties", properties);
         context.setAttribute("employeeDirectory", employeeDirectory);

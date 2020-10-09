@@ -1,5 +1,5 @@
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>--%>
-<%--<c:set var="header_title" value="Lab 2 - JSTL" scope="page"/>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="header_title" value="Lab 2 - JSTL" scope="page"/>
 
 <%@include file="../websitesInclude/head.jsp" %>
 <body>
@@ -7,29 +7,28 @@
 <div id="content">
     <div id="posts">
         <h2>Project 3 - Properties data </h2>
-        <h3>Output: </h3>
+        <h3>${project4AddMessage}</h3>
         <table>
             <tr>
-                <th>Employee ID</th><td>${search.results["employeeID"]}</td>
+                <th>EmployeeID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>SSN</th>
+                <th>Department</th>
+                <th>Room</th>
+                <th>Phone</th>
             </tr>
-            <tr>
-                <th>First Name</th><td>${search.results["employeeID"]}</td>
-            </tr>
-            <tr>
-                <th>Last Name</th><td>${search.results["employeeID"]}</td>
-            </tr>
-            <tr>
-                <th>Social Security Number</th><td>${search.results["employeeID"]}</td>
-            </tr>
-            <tr>
-                <th>Department</th><td>${search.results["employeeID"]}</td>
-            </tr>
-            <tr>
-                <th>Room</th><td>${search.results["employeeID"]}</td>
-            </tr>
-            <tr>
-                <th>Phone</th><td>${search.results["employeeID"]}</td>
-            </tr>
+                <c:forEach items="${search.results}" var="employee">
+                   <tr>
+                       <td><c:out value="${employee.employeeID}"/></td>
+                       <td><c:out value="${employee.firstName}"/></td>
+                       <td><c:out value="${employee.lastName}"/></td>
+                       <td><c:out value="${employee.ssn}"/></td>
+                       <td><c:out value="${employee.department}"/></td>
+                       <td><c:out value="${employee.room}"/></td>
+                       <td><c:out value="${employee.phone}"/></td>
+                   </tr>
+                   </c:forEach>
         </table>
 
     </div>

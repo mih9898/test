@@ -19,24 +19,18 @@ import java.io.IOException;
 )
 
 public class EmployeeSearchServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletContext context = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory) context.getAttribute("employeeDirectory");
-        String searchType = (String) context.getAttribute("searchType");
-        String searchTerm = (String) context.getAttribute("searchTerm");
+        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context.getAttribute("employeeDirectory");
 
-        Search search = employeeDirectory.searchEmployeeDB(searchTerm, searchType);
+        String searchType = request.getParameter("searchType");
+        String searchTerm = request.getParameter("searchTerm");
+        Search search = employeeDirectory.searchEmployeeDB(searchType, searchTerm);
+
         HttpSession session = request.getSession();
-        if(search.isFound()){
-            session.setAttribute("search", search);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/properties.jsp");
-            dispatcher.forward(request, response);
-        }
-
-    }
-
-    @Override
-    public void init() throws ServletException {
-
+        session.setAttribute("search", search);
+//        log("\nQUERY - "+employeeDirectory.getTest()+"\n");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/addPageDisplayServlet");
+        dispatcher.forward(request, response);
     }
 }
