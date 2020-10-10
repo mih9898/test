@@ -1,8 +1,6 @@
 package java112.project4;
 
 import java112.analyzer.FileAnalysis;
-import java112.utilities.PropertiesLoader;
-
 import java.io.*;
 import java.util.Properties;
 
