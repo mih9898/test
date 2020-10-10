@@ -13,6 +13,13 @@ import java.io.IOException;
         urlPatterns = { "/addEmployee" }
 )
 
+/**
+ * This servlet
+ * forwards to the add employee
+ * output webpage
+ *
+ * @author     mturchanov
+ */
 public class EmployeeForwardServlet extends HttpServlet {
 
     /**
@@ -26,7 +33,8 @@ public class EmployeeForwardServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/add_employee.jsp");
+        RequestDispatcher dispatcher = request
+                .getRequestDispatcher("/jsp/add_employee.jsp");
         dispatcher.forward(request, response);
     }
 }

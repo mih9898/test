@@ -2,7 +2,7 @@ package java112.employee;
 
 /**
  * This class represents
- * and employee
+ * an employee
  *
  * @author mturchanov
  */

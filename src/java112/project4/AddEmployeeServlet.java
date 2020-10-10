@@ -1,8 +1,6 @@
 package java112.project4;
 
-import java112.employee.Employee;
 import java112.employee.EmployeeDirectory;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +34,11 @@ public class AddEmployeeServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         session.setAttribute("project4AddMessage", "New employee was added");;
         ServletContext context = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context
+        employeeDirectory = (EmployeeDirectory)context
                 .getAttribute("employeeDirectory");
         String employeeID = request.getParameter("employeeID");
         String firstName = request.getParameter("firstName");
