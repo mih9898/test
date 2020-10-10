@@ -51,8 +51,7 @@ public class EmployeeDirectory implements PropertiesLoader {
      */
     public void addRecord(String employeeID, String firstName, String lastName,
                           String ssn, String department, String room, String phone) {
-        try (Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/student", "student", "student");
+        try (Connection connection = establishConnection();
              PreparedStatement insertEmployee = connection.prepareStatement(
                      "INSERT INTO employees "
                              + "VALUES(?, ?, ?, ?, ?, ?, ?);" );) {
