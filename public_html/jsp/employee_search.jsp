@@ -16,8 +16,14 @@
             <label for="employeeID">Employee ID</label><br>
             <input type="radio" id="firstName" name="searchType" value="first_name">
             <label for="firstName">First Name</label><br>
-            <input type="radio" id="lastName" name="searchType" value="last_name">
-            <label for="lastName">Last Name</label> <br>
+            <input type="radio" id="ssn" name="searchType" value="ssn">
+            <label for="ssn">Social Security Number</label> <br>
+            <input type="radio" id="dept" name="searchType" value="dept">
+            <label for="dept">Department</label> <br>
+            <input type="radio" id="room" name="searchType" value="room">
+            <label for="room">Room</label> <br>
+            <input type="radio" id="phone" name="searchType" value="phone">
+            <label for="phone">Phone</label> <br>
             <input type="submit" value="Search">
         </form>
 
