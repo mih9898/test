@@ -6,7 +6,7 @@
 <%@include file="../websitesInclude/nav.jsp" %>
 <div id="content">
     <div id="posts">
-        <h2> Lab 3 - Forms</h2>
+        <h2> Project 4 - Search Page</h2>
         <form action="${pageContext.request.contextPath}/employeeSearchServlet"
               method="get">
             <label for="searchTerm">Search Term: </label>

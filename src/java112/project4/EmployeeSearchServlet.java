@@ -19,7 +19,8 @@ import java.io.IOException;
 )
 
 public class EmployeeSearchServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         ServletContext context = getServletContext();
         EmployeeDirectory employeeDirectory = (EmployeeDirectory)context.getAttribute("employeeDirectory");
 
@@ -29,7 +30,6 @@ public class EmployeeSearchServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("search", search);
-//        log("\nQUERY - "+employeeDirectory.getTest()+"\n");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/addPageDisplayServlet");
         dispatcher.forward(request, response);
     }

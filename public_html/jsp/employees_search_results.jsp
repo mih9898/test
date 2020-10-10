@@ -6,7 +6,7 @@
 <%@include file="../websitesInclude/nav.jsp" %>
 <div id="content">
     <div id="posts">
-        <h2>Project 3 - Properties data </h2>
+        <h2> Project 4 - Search results</h2>
         <h3>${project4AddMessage}</h3>
         <table>
             <tr>

@@ -6,7 +6,7 @@
 <%@include file="../websitesInclude/nav.jsp" %>
 <div id="content">
     <div id="posts">
-        <h2> Lab 3 - Forms</h2>
+        <h2> Project 4 - Add Employee</h2>
         <h3>${project4AddMessage}</h3>
 
         <form action="${pageContext.request.contextPath}/addEmployeeServlet"
