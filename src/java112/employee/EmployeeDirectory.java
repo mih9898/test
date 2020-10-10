@@ -5,7 +5,10 @@ import java.sql.*;
 import java.util.Properties;
 
 /**
- * The type Employee directory.
+ * The type Employee directory
+ * that handles DB operations.
+ *
+ * @author mturchanov
  */
 public class EmployeeDirectory implements PropertiesLoader {
     private Properties properties;
@@ -84,22 +87,18 @@ public class EmployeeDirectory implements PropertiesLoader {
         return search;
     }
 
+    /**
+     * Selects employees in DB
+     *
+     * @param search search
+     */
     private void selectEmployee(Search search) {
         String term = search.getSearchTerm();
         String type = search.getSearchType();
-        String query = "select * from employees where ?=?;";
-
+        String query = getQuery(type, term);
         try(Connection connection = establishConnection();
-            PreparedStatement statement = connection.prepareStatement(query)
-        ) {
-            if(type.equals("emp_id")) {
-                statement.setString(1,type);
-                statement.setInt(2, Integer.parseInt(term));
-
-            } else {
-                statement.setString(1,type);
-                statement.setString(2, term);
-            }
+            Statement statement = connection.createStatement()
+            ) {
             try(ResultSet resultSet = statement.executeQuery(query);){
                 //Retrieving the data
                 if (!resultSet.isBeforeFirst() ) {
@@ -118,7 +117,6 @@ public class EmployeeDirectory implements PropertiesLoader {
                         search.addFoundEmployee(employee);
                     }
                 }
-
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -127,44 +125,14 @@ public class EmployeeDirectory implements PropertiesLoader {
         }
     }
 
-
-//    private void selectEmployee(Search search) {
-//        String term = search.getSearchTerm();
-//        String type = search.getSearchType();
-//        String query = "";
-//        if(type.equals("emp_id")) {
-//            query = "select * from employees where emp_id="
-//                    + Integer.parseInt(term) + ";";
-//        } else {
-//            query = String.format("select * from employees where %s='%s';", type, term);
-//        }
-//        try(Connection connection = establishConnection();
-//            Statement statement = connection.createStatement()
-//            ) {
-//            try(ResultSet resultSet = statement.executeQuery(query);){
-//                //Retrieving the data
-//                if (!resultSet.isBeforeFirst() ) {
-//                    search.setFound(false);
-//                } else {
-//                    search.setFound(true);
-//                    while(resultSet.next()) {
-//                        Employee employee = new Employee();
-//                        employee.setEmployeeID(Integer.parseInt(resultSet.getString("emp_id")));
-//                        employee.setFirstName(resultSet.getString("first_name"));
-//                        employee.setLastName(resultSet.getString("last_name"));
-//                        employee.setSsn(resultSet.getString("ssn"));
-//                        employee.setDepartment(resultSet.getString("dept"));
-//                        employee.setRoom(resultSet.getString("room"));
-//                        employee.setPhone(resultSet.getString("phone"));
-//                        search.addFoundEmployee(employee);
-//                    }
-//                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private String getQuery(String type, String term) {
+        String query = "";
+        if(type.equals("emp_id")) {
+            query = "select * from employees where emp_id="
+                    + Integer.parseInt(term) + ";";
+        } else {
+            query = String.format("select * from employees where %s='%s';", type, term);
+        }
+        return query;
+    }
 }
