@@ -18,16 +18,31 @@ import java.io.IOException;
         urlPatterns = { "/employeeSearchServlet" }
 )
 
+/**
+ * This servlet searches
+ * for an employee in DB,
+ *
+ * @author     mturchanov
+ */
 public class EmployeeSearchServlet extends HttpServlet {
+
+    /**
+     *  Searches an employee(s)
+     *
+     * @param request request
+     * @param response response
+     * @throws ServletException ServletException
+     * @throws IOException IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ServletContext context = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context.getAttribute("employeeDirectory");
+        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context
+                .getAttribute("employeeDirectory");
 
         String searchType = request.getParameter("searchType");
         String searchTerm = request.getParameter("searchTerm");
         Search search = employeeDirectory.searchEmployeeDB(searchType, searchTerm);
-
         HttpSession session = request.getSession();
         session.setAttribute("search", search);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/addPageDisplayServlet");

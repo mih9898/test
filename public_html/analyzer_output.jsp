@@ -6,8 +6,7 @@
 <%@include file="websitesInclude/nav.jsp" %>
 <div id="content">
     <div id="posts">
-        <h2> Project 4 - Analyzer</h2>
-
+        <h2> Project 4 - Analyzer Summary</h2>
         <details>
             <summary>File Summary</summary>
             <p>${fileTokensSummary}</p>

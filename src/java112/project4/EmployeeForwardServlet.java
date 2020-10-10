@@ -14,10 +14,20 @@ import java.io.IOException;
         urlPatterns = { "/addEmployee" }
 )
 
+
 public class EmployeeForwardServlet extends HttpServlet {
+
+    /**
+     *  Forwards to the
+     *  output webpage
+     *
+     * @param request request
+     * @param response response
+     * @throws ServletException ServletException
+     * @throws IOException IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/add_employee.jsp");
         dispatcher.forward(request, response);
     }

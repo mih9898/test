@@ -17,14 +17,30 @@ import java.io.IOException;
         urlPatterns = { "/addEmployeeServlet" }
 )
 
+/**
+ * This servlet adds
+ * employee to DB
+ *
+ * @author     mturchanov
+ */
 public class AddEmployeeServlet extends HttpServlet {
     private EmployeeDirectory employeeDirectory;
+
+    /**
+     *  Handles HTTP POST requests
+     *
+     * @param request request
+     * @param response response
+     * @throws ServletException ServletException
+     * @throws IOException IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("project4AddMessage", "New employee was added");;
         ServletContext context = getServletContext();
-        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context.getAttribute("employeeDirectory");
+        EmployeeDirectory employeeDirectory = (EmployeeDirectory)context
+                .getAttribute("employeeDirectory");
         String employeeID = request.getParameter("employeeID");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
@@ -32,8 +48,6 @@ public class AddEmployeeServlet extends HttpServlet {
         String dept = request.getParameter("dept");
         String room = request.getParameter("room");
         String phone = request.getParameter("phone");
-        log("\n" + String.format("Record on %s %s %s %s %s %s %s was added%n",
-                employeeID,firstName, lastName,ssn,dept,room,phone) + "\n");
         employeeDirectory.addRecord(employeeID, firstName, lastName, ssn,
                 dept, room, phone);
         response.sendRedirect("/java112/addEmployee");

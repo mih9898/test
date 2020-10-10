@@ -11,7 +11,6 @@
               method="get">
             <label for="searchTerm">Search Term: </label>
             <input type="text" id="searchTerm" name="searchTerm"> <br>
-
             <p>Search Term: </p>
             <input type="radio" id="employeeID" name="searchType" value="emp_id">
             <label for="employeeID">Employee ID</label><br>

@@ -15,26 +15,38 @@ import java.io.IOException;
         name = "AddPageDisplayServlet",
         urlPatterns = { "/addPageDisplayServlet" }
 )
+
+/**
+ * This servlet adds
+ * appropriate heading
+ * to session and forwards
+ * to the output webpage
+ *
+ * @author     mturchanov
+ */
 public class AddPageDisplayServlet extends HttpServlet {
+
+    /**
+     *  Handles HTTP GET requests
+     *
+     * @param request request
+     * @param response response
+     * @throws ServletException ServletException
+     * @throws IOException IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-//        if(session.getAttribute("projectAddEmployee") != null) {
-//            response.sendRedirect("/jsp/add_employee.jsp");
-//            return;
-//        } else {
-//            session.setAttribute("projectAddEmployee", "failure");
-//            response.sendRedirect("/jsp/add_employee.jsp");
-//
-//        }
-
         Search search = (Search)session.getAttribute("search");
         if(search.isFound()){
-            request.setAttribute("project4AddMessage", "Requested employee(s) ");
+            request.setAttribute("project4AddMessage",
+                    "Requested employee(s) ");
         } else {
-            request.setAttribute("project4AddMessage", "There is no employee with such attribute");
+            request.setAttribute("project4AddMessage",
+                    "There is no employee with such attribute");
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/employees_search_results.jsp");
+        RequestDispatcher dispatcher = request
+                .getRequestDispatcher("/jsp/employees_search_results.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -43,27 +43,46 @@ public class AnalyzerReadFileServlet extends HttpServlet implements PropertiesLo
             throws ServletException, IOException {
 
         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
-        String fileName = Paths.get(filePart.getSubmittedFileName())
-                .getFileName().toString();
-        String pathToFile = new File("").getAbsolutePath() + "/" + fileName;
-
-        String[] args = new String[2];
-        args[0] = pathToFile;
-        args[1] = "/analyzer.properties";
+        String[] args = generateArgsForAnalyzer(filePart);
 
         SummariesHandler summariesHandler = new SummariesHandler(properties);
         summariesHandler.generateSummaries(args);
 
-        request.setAttribute("fileTokensSummary", summariesHandler.getSummary());
-        request.setAttribute("distinctTokensSummary", summariesHandler.getDistinctTokensSummary());
-        request.setAttribute("largestTokensSummary", summariesHandler.getLargestTokensSummary());
-        request.setAttribute("distinctCountsSummary", summariesHandler.getDistinctCountsSummary());
-        request.setAttribute("lexicalSummary", summariesHandler.getLexicalSummary());
-        request.setAttribute("tokensLengthSummary", summariesHandler.getTokensLengthSummary());
-        request.setAttribute("searchLocationsSummary", summariesHandler.getSearchLocationsSummary());
+        request.setAttribute("fileTokensSummary",
+                summariesHandler.getSummary());
+        request.setAttribute("distinctTokensSummary",
+                summariesHandler.getDistinctTokensSummary());
+        request.setAttribute("largestTokensSummary",
+                summariesHandler.getLargestTokensSummary());
+        request.setAttribute("distinctCountsSummary",
+                summariesHandler.getDistinctCountsSummary());
+        request.setAttribute("lexicalSummary",
+                summariesHandler.getLexicalSummary());
+        request.setAttribute("tokensLengthSummary",
+                summariesHandler.getTokensLengthSummary());
+        request.setAttribute("searchLocationsSummary",
+                summariesHandler.getSearchLocationsSummary());
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/analyzer_output.jsp");
+        RequestDispatcher dispatcher = request
+                .getRequestDispatcher("/analyzer_output.jsp");
         dispatcher.forward(request, response);
+    }
+
+    /**
+     * Generates arguments
+     * for a file analyzer
+     *
+     * @param filePart file part
+     * @return generated arguments for a file analyzer
+     */
+    private String[] generateArgsForAnalyzer(Part filePart) {
+        String fileName = Paths.get(filePart.getSubmittedFileName())
+                .getFileName().toString();
+        String pathToFile = new File("").getAbsolutePath() + "/" + fileName;
+        String[] args = new String[2];
+        args[0] = pathToFile;
+        args[1] = "/analyzer.properties";
+        return args;
     }
 
     /**
