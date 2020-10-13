@@ -24,6 +24,12 @@ public class EmployeeDirectory implements PropertiesLoader {
         this.properties = properties;
     }
 
+    /**
+     * Establishes connection
+     * with DB
+     *
+     * @return connection.
+     */
     private Connection establishConnection() {
         Connection conn =null;
         try {
@@ -97,7 +103,7 @@ public class EmployeeDirectory implements PropertiesLoader {
         String query = getQuery(type, term);
         try(Connection connection = establishConnection();
             Statement statement = connection.createStatement()
-            ) {
+        ) {
             try(ResultSet resultSet = statement.executeQuery(query);){
                 //Retrieving the data
                 if (!resultSet.isBeforeFirst() ) {
