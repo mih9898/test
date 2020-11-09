@@ -25,7 +25,6 @@ import java.io.IOException;
  * @author     mturchanov
  */
 public class EmployeeSearchServlet extends HttpServlet {
-
     /**
      *  Searches an employee(s)
      *

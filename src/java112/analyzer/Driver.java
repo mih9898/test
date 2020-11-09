@@ -1,6 +1,7 @@
 package java112.analyzer;
 
 
+import java.math.BigDecimal;
 
 /**
  * This program reads a text-file,
@@ -19,5 +20,6 @@ public class Driver {
     public static void main(String[] args) {
         FileAnalysis output = new FileAnalysis();
         output.analyze(args);
+
     }
 }

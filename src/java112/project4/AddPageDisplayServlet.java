@@ -36,6 +36,7 @@ public class AddPageDisplayServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         Search search = (Search)session.getAttribute("search");
         if(search.isFound()){

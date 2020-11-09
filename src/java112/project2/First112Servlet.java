@@ -36,13 +36,13 @@ public class First112Servlet  extends HttpServlet  {
         out.print("<table style='border:solid black 2px;"
                 + " padding:2em; margin: 0 auto;'>");
         out.printf("<tr><th style='padding:1em;'>%s</th>"
-                + "<td style='max-width:200px;'>%s</td></tr>", "Name",
+                        + "<td style='max-width:200px;'>%s</td></tr>", "Name",
                 "Mykhailo Turchanov");
         out.printf("<tr><th style='padding:1em;'>%s</th>"
-                + "<td style='max-width:200px;'>%s</td></tr>", "Class",
+                        + "<td style='max-width:200px;'>%s</td></tr>", "Class",
                 "Advanced Java(Fall 2020)");
         out.printf("<tr><th style='padding:1em;'>%s</th>"
-                + "<td style='max-width:200px;'>%s</td></tr>", "Image",
+                        + "<td style='max-width:200px;'>%s</td></tr>", "Image",
                 "<img src='images/cat1.jpg' alt='cat' style='width:200px;'");
         out.print("</table>");
         out.print("</BODY>");

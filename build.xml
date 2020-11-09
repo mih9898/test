@@ -33,6 +33,10 @@
   <property name="lab_lib" value="${project_home}/lib/java112Labs.jar" />
   <property name="junit" value="${project_home}/lib/junit.jar" />
   <property name="hamcrest" value="${project_home}/lib/hamcrest.jar" />
+
+  <property name="javax_json" value="${project_home}/lib/javax.json-api-1.0.jar" />
+
+
   <property name="java_hamcrest" value="${project_home}/lib/java-hamcrest.jar" />
   <property name="project_1" value="present"/>
   <property name="project_2" value="present"/>
